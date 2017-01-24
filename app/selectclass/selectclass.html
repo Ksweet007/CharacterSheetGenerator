@@ -1,36 +1,39 @@
 
-	<div class="container-fluid bg-3 text-center">
-    <h2 data-bind="text:displayName"></h2>
-    <!-- css:{'inactive': !IsSelectingProduct(),'active': IsSelectingProduct()} -->
+	<div class="jumbotron">
+		<div class="container-fluid bg-3 text-center">
+			<h2 data-bind="text:displayName"></h2>
 
-<!-- every 4 should add a new coulmn -->
-    <!-- ko if: columnCount() === 1 -->
-    <div class="list-group col-md-4" data-bind="foreach: classList">
-        <button type="button" class="list-group-item list-group-item-action" data-bind="text:name,click: selectClass"></button>
-    </div>
-    <!-- /ko -->
+	<!-- every 4 should add a new coulmn -->
+	    <!-- ko if: columnCount() === 1 -->
+	    <div class="list-group col-md-4" data-bind="foreach: classList">
+	        <button type="button" class="list-group-item list-group-item-action" data-bind="text:name,click: selectClass"></button>
+	    </div>
+	    <!-- /ko -->
 
-    <!-- ko if: columnCount() === 2 -->
-    <div class="list-group col-md-4" data-bind="foreach: classList">
-        <button type="button" class="list-group-item list-group-item-action" data-bind="text:name,click: selectClass"></button>
-    </div>
+	    <!-- ko if: columnCount() === 2 -->
+	    <div class="list-group col-md-4" data-bind="foreach: classList">
+	        <button type="button" class="list-group-item list-group-item-action" data-bind="text:name,click: selectClass"></button>
+	    </div>
 
-    <div class="list-group col-md-4" data-bind="foreach: classList">
-        <button type="button" class="list-group-item list-group-item-action" data-bind="text:name,click: selectClass"></button>
-    </div>
-    <!-- /ko -->
+	    <div class="list-group col-md-4" data-bind="foreach: classList">
+	        <button type="button" class="list-group-item list-group-item-action" data-bind="text:name,click: selectClass"></button>
+	    </div>
+	    <!-- /ko -->
 
-    <!-- ko if: columnCount() === 3 -->
-    <div class="list-group col-md-4" data-bind="foreach: classList">
-        <button type="button" class="list-group-item list-group-item-action" data-bind="text:name,click: selectClass"></button>
-    </div>
+	    <!-- ko if: columnCount() === 3 -->
+	    <div class="list-group col-md-4" data-bind="foreach: classList">
+	        <button type="button" class="list-group-item list-group-item-action" data-bind="text:name,click: selectClass"></button>
+	    </div>
 
-    <div class="list-group col-md-4" data-bind="foreach: classList">
-        <button type="button" class="list-group-item list-group-item-action" data-bind="text:name,click: selectClass"></button>
-    </div>
+	    <div class="list-group col-md-4" data-bind="foreach: classList">
+	        <button type="button" class="list-group-item list-group-item-action" data-bind="text:name,click: selectClass"></button>
+	    </div>
 
-    <div class="list-group col-md-4" data-bind="foreach: classList">
-        <button type="button" class="list-group-item list-group-item-action" data-bind="text:name,click: selectClass"></button>
-    </div>
-    <!-- /ko -->
+	    <div class="list-group col-md-4" data-bind="foreach: classList">
+	        <button type="button" class="list-group-item list-group-item-action" data-bind="text:name,click: selectClass"></button>
+	    </div>
+	    <!-- /ko -->
+
+		</div>
+
 </div>

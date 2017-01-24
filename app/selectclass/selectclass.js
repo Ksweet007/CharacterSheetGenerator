@@ -27,9 +27,7 @@ define(function(require) {
 			else if(self.classList().length >= 17){
 				return 3;
 			}
-		});
-
-		// var columnTruth = self.totalClasses() % 2 === 0
+		});	
 
 		self.selectClass = function() {
 
