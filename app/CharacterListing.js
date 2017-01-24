@@ -1,4 +1,4 @@
-var ClassList = {
+{
 	"barbarian" : {
 		regExpSearch : /^((?=.*(marauder|barbarian|viking|(norse|tribes?|clans?)(wo)?m(a|e)n))|((?=.*(warrior|fighter))(?=.*(feral|tribal)))).*$/i,
 		name : "Barbarian",
@@ -4749,5 +4749,5 @@ var ClassSubList = {
 				description : "\n   " + "While my bladesong is active, I can add my Int mod to melee weapon attack damage"
 			}
 		}
-	},
+	}
 }
