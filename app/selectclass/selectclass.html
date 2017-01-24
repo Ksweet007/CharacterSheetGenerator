@@ -1,0 +1,44 @@
+<section>
+    <h2 data-bind="text:displayName"></h2>
+    <!-- ko foreach: classListOptions -->
+    <!-- /ko -->
+    <!-- css:{'inactive': !IsSelectingProduct(),'active': IsSelectingProduct()} -->
+
+<!-- every 4 should add a new coulmn -->
+    <!-- ko if: columnCount() === 1 -->
+    <div class="list-group col-md-4" data-bind="foreach: classListOptions">
+        <button type="button" class="list-group-item list-group-item-action" data-bind="text:name,click: selectClass"></button>
+    </div>
+    <!-- /ko -->
+
+    <!-- ko if: columnCount() === 2 -->
+    <div class="list-group col-md-4" data-bind="foreach: classListOptions">
+        <button type="button" class="list-group-item list-group-item-action" data-bind="text:name,click: selectClass"></button>
+    </div>
+
+    <div class="list-group col-md-4" data-bind="foreach: classListOptions">
+        <button type="button" class="list-group-item list-group-item-action" data-bind="text:name,click: selectClass"></button>
+    </div>
+    <!-- /ko -->
+
+    <!-- ko if: columnCount() === 3 -->
+    <div class="list-group col-md-4" data-bind="foreach: classListOptions">
+        <button type="button" class="list-group-item list-group-item-action" data-bind="text:name,click: selectClass"></button>
+    </div>
+
+    <div class="list-group col-md-4" data-bind="foreach: classListOptions">
+        <button type="button" class="list-group-item list-group-item-action" data-bind="text:name,click: selectClass"></button>
+    </div>
+
+    <div class="list-group col-md-4" data-bind="foreach: classListOptions">
+        <button type="button" class="list-group-item list-group-item-action" data-bind="text:name,click: selectClass"></button>
+    </div>
+    <!-- /ko -->
+
+
+
+
+
+
+
+</section>
