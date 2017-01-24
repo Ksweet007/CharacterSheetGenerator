@@ -8,7 +8,8 @@
         },
         activate: function () {
             router.map([
-                { route: '', title:'Class List', moduleId: 'selectclass/selectclass', nav: true }
+                { route: '', title:'Class List', moduleId: 'selectclass/selectclass', nav: true },
+								{ route: 'race', title: 'Race List', moduleId: 'selectrace/selectrace', nav: true }
                 //{ route: 'flickr', moduleId: 'viewmodels/flickr', nav: true }
             ]).buildNavigationModel();
 
