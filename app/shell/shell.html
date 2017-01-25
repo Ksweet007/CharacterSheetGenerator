@@ -8,11 +8,11 @@
             <a data-bind="attr: { href: hash }, text: title"></a>
         </li>
     </ul>
-    <form class="navbar-form navbar-left" role="search" data-bind="submit:search">
+    <form class="navbar-form navbar-left" role="search">
       <div class="input-group">
-        <input type="text" data-bind="textInput:searchTerm" class="form-control" placeholder="Search"></input>
+        <input type="text" data-bind="textInput:searchTerm, event:{keyup : search}" class="form-control" placeholder="Search"></input>
         <div class="input-group-btn">
-          <button class="btn btn-default" type="submit">
+          <button class="btn btn-default" data-bind="click: search">
             <i class="glyphicon glyphicon-search"></i>
           </button>
         </div>
