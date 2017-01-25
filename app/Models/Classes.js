@@ -3,6 +3,7 @@ define(function(require) {
 	function CharCopCls() {}
 
 	CharCopCls.prototype.getClass = function() {
+
 		return {
 			"Barbarian": {
 				"skills": [": Choose two from Animal Handling, Athletics, Intimidation, Nature, Perception, and Survival."],
@@ -109,6 +110,8 @@ define(function(require) {
 				}
 			}
 		}
+
+
 
 	}
 	return new CharCopCls();

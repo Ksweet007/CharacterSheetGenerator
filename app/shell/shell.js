@@ -1,11 +1,16 @@
-﻿define(['plugins/router', 'durandal/app', 'durandal/events'], function (router, app, events) {
+﻿define(['plugins/router', 'durandal/app'], function (router, app) {
     var self = this;
     self.searchTerm = ko.observable();
     return {
         router: router,
         search: function() {
-          router.activeItem().search(self.searchTerm());
-          //app.showMessage('Search not yet implemented...');
+          if(router.activeItem() && router.activeItem().search){
+              var searchResults = router.activeItem().search(self.searchTerm());
+          }
+          else{
+              app.showMessage('Search not implemented for this view.');
+          }
+
         },
         activate: function () {
             router.map([
