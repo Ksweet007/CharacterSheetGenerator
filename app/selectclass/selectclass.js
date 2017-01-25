@@ -2,7 +2,8 @@ define(function(require) {
 	var _i = {
 		ko: require('knockout'),
 		$: require('jquery'),
-		search: require('services/search')
+		search: require('services/search'),
+		list: require('services/listmanager')
 	};
 
 	return function() {
@@ -10,6 +11,10 @@ define(function(require) {
 		self.data = null;
 		self.initialClassList = _i.ko.observableArray([]);
 		self.classList = _i.ko.observableArray([]);
+
+		self.alphaclassList = _i.ko.computed(function(){
+			return _i.list.sortAlphabetically(self.classList());
+		});
 		self.displayName = 'Welcome to the Character Builder!';
 
 		self.activate = function() {
@@ -28,15 +33,6 @@ define(function(require) {
 			}
 		};
 
-		self.columnCount = _i.ko.computed(function() {
-			if (self.classList().length > 0 && self.classList().length < 8) {
-				return 1;
-			} else if (self.classList().length >= 8 && self.classList().length < 17) {
-				return 2;
-			} else if (self.classList().length >= 17) {
-				return 3;
-			}
-		});
 	};
 
 });
