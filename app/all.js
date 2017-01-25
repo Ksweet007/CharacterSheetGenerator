@@ -4,7 +4,6 @@ define(function(require) {
     };
 
     require('./cls');
-
-		require('./bindinghandlers/fadeVisible');
+	
 
 });
