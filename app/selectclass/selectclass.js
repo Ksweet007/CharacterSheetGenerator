@@ -2,7 +2,8 @@ define(function(require) {
 	var _i = {
 		ko: require('knockout'),
 		$: require('jquery'),
-		classes: require('services/characterlisting')
+		classes: require('services/characterlisting'),
+		events: require('../../lib/durandal/js/events')
 	};
 
 	return function() {
@@ -17,6 +18,10 @@ define(function(require) {
 			});
 		};
 
+		self.search = function(){
+			var fpp = 'fgfgf';
+		};
+
 		self.columnCount = _i.ko.computed(function(){
 			if(self.classList().length > 0 && self.classList().length < 8){
 				return 1;
@@ -27,11 +32,7 @@ define(function(require) {
 			else if(self.classList().length >= 17){
 				return 3;
 			}
-		});	
-
-		self.selectClass = function() {
-
-		};
+		});
 	};
 
 });
