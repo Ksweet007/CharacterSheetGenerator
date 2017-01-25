@@ -6,20 +6,25 @@ define(function(require){
 
 	_i.ko.bindingHandlers.fadeVisible = {
 	    init: function(element, valueAccessor, allBindings, viewModel, bindingContext) {
-				var $element = _i.$(element);
-				var value = valueAccessor();
-				
-				$element.on('click',function(){
+			var $element = _i.$(element);
+			var value = valueAccessor();
+			var isSelected = _i.ko.observable(true);
 
-				});
-
-
-        // $(element).toggle(ko.unwrap(value)); // Use "unwrapObservable" so we can handle values that may or may not be observable
 	    },
 	    update: function(element, valueAccessor) {
-	        // Whenever the value subsequently changes, slowly fade the element in or out
+	        var $element = _i.$(element);
 	        var value = valueAccessor();
-	        ko.unwrap(value) ? $(element).fadeIn() : $(element).fadeOut();
+
+					if(value.selectedClassId() > 0){
+						return;
+					}
+
+					if(value.className === value.selectedClassId()){
+						$element.fadeIn();
+					}
+					else{
+						$element.fadeOut();
+					}
 	    }
 	};
 
