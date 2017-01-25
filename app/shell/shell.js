@@ -1,16 +1,24 @@
 ﻿define(['plugins/router', 'durandal/app'], function (router, app) {
+    var self = this;
+    self.searchTerm = ko.observable();
+
     return {
         router: router,
-        search: function() {
-            //It's really easy to show a message box.
-            //You can add custom options too. Also, it returns a promise for the user's response.
-            app.showMessage('Search not yet implemented...');
+        search: function(data,event) {
+
+            if(router.activeItem() && router.activeItem().search){
+                var searchResults = router.activeItem().search(self.searchTerm());
+            }
+            else{
+                app.showMessage('Search not implemented for this view.');
+            }
+
         },
         activate: function () {
             router.map([
                 { route: '', title:'Class List', moduleId: 'selectclass/selectclass', nav: true },
 								{ route: 'race', title: 'Race List', moduleId: 'selectrace/selectrace', nav: true }
-                //{ route: 'flickr', moduleId: 'viewmodels/flickr', nav: true }
+
             ]).buildNavigationModel();
 
             return router.activate();

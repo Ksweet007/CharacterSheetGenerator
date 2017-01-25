@@ -2,38 +2,48 @@ define(function(require) {
 	var _i = {
 		ko: require('knockout'),
 		$: require('jquery'),
-		classes: require('services/characterlisting')
+		search: require('services/search'),
+		list: require('services/listmanager')
 	};
 
 	return function() {
 		var self = this;
 		self.data = null;
+		self.initialClassList = _i.ko.observableArray([]);
 		self.classList = _i.ko.observableArray([]);
-		self.displayName = 'Welcome to the Character Builder!';
+		self.selectedClassId = _i.ko.observable(0);
+		self.shouldFade = _i.ko.observable(false);
+		self.displayName = 'Select Class';
 
-		self.activate = function(){
-			return _i.$.getJSON("app/ClassList.js", function(data){
+		self.alphaclassList = _i.ko.computed(function() {
+			return _i.list.sortAlphabetically(self.classList());
+		});
+
+		self.activate = function() {
+			return _i.$.getJSON("app/ClassList.js", function(data) {
+				var mappedList = _i.$.map(data.Classes,function(obj,index){
+					obj.id = index + 1;
+					return obj;
+				});
+
+				self.data = mappedList;
 				self.classList(data.Classes);
 			});
 		};
 
-		self.columnCount = _i.ko.computed(function(){
-			if(self.classList().length > 0 && self.classList().length < 8){
-				return 1;
+		self.search = function(searchTerm) {
+			if (!searchTerm || searchTerm === "") {
+				self.classList(self.data);
+			} else {
+				var searchResults = _i.search.searchClassname(self.data, searchTerm);
+				self.classList(searchResults);
 			}
-			else if(self.classList().length >= 8 && self.classList().length < 17){
-				return 2;
-			}
-			else if(self.classList().length >= 17){
-				return 3;
-			}
-		});
-
-		// var columnTruth = self.totalClasses() % 2 === 0
-
-		self.selectClass = function() {
-
 		};
+
+		self.selectClass = function(selectedClassId) {
+			self.selectedClassId(selectedClassId);
+		}
+
 	};
 
 });

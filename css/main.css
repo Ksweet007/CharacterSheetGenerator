@@ -16,15 +16,13 @@
     width: 250px;
     height: 30px;
 }
-.navbar-inverse {
-	position: relative !important;
-	min-height: 50px !important;
-	margin-bottom: 20px !important;
-	border: 1px solid transparent !important;
 
-	background-image: linear-gradient(to bottom,#3c3c3c 0,#222 100%) !important;
-  background-repeat: repeat-x !important;
-	background-color: #222 !important;
-  border-color: #080808 !important;
-  border-radius: 0 !important;
+.navbar-dark {
+  background-color: #222;
+  border-color: #080808;
+  color: grey;
+}
+
+.navbar-dark a{
+  color: grey;
 }
