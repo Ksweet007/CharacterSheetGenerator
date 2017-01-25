@@ -12,20 +12,34 @@ define(function(require) {
 		self.initialClassList = _i.ko.observableArray([]);
 		self.classList = _i.ko.observableArray([]);
 		self.selectedClassId = _i.ko.observable(0);
-		self.shouldFade = _i.ko.observable(false);
 		self.displayName = 'Select Class';
-
 		self.alphaclassList = _i.ko.computed(function() {
 			return _i.list.sortAlphabetically(self.classList());
 		});
 
+		self.classFadeIn = function(elem) {
+			if (elem.nodeType === 1) _i.$(elem).hide().slideDown()
+		}
+		self.classFadeOut = function(elem) {
+			if (elem.nodeType === 1) _i.$(elem).slideUp(function() {
+				$(elem).remove();
+			})
+		}
+
+		self.classListToBind = _i.ko.pureComputed(function() {
+			var desiredType = self.selectedClassId();
+			if (desiredType === 0) return self.classList();
+			return ko.utils.arrayFilter(self.classList(), function(item) {
+				return item.id === desiredType;
+			});
+		}, self);
+
 		self.activate = function() {
 			return _i.$.getJSON("app/ClassList.js", function(data) {
-				var mappedList = _i.$.map(data.Classes,function(obj,index){
+				var mappedList = _i.$.map(data.Classes, function(obj, index) {
 					obj.id = index + 1;
 					return obj;
 				});
-
 				self.data = mappedList;
 				self.classList(data.Classes);
 			});
@@ -41,7 +55,11 @@ define(function(require) {
 		};
 
 		self.selectClass = function(selectedClassId) {
-			self.selectedClassId(selectedClassId);
+			if (selectedClassId === self.selectedClassId()) {
+				self.selectedClassId(0);
+			} else {
+				self.selectedClassId(selectedClassId);
+			}
 		}
 
 	};

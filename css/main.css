@@ -26,3 +26,15 @@
 .navbar-dark a{
   color: grey;
 }
+
+button.list-group-item:hover{
+  background-color: #222 !important;
+  border-color: #080808 !important;
+  color: grey !important;
+}
+
+.selectionTitlebar {
+  background-color: #222 !important;
+  border-color: #080808 !important;
+  color: grey !important;
+}
