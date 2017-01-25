@@ -11,11 +11,13 @@ define(function(require) {
 		self.data = null;
 		self.initialClassList = _i.ko.observableArray([]);
 		self.classList = _i.ko.observableArray([]);
+		self.selectedClassName = _i.ko.observable('');
+		self.shouldFade = _i.ko.observable(false);
+		self.displayName = 'Select Class';
 
 		self.alphaclassList = _i.ko.computed(function(){
 			return _i.list.sortAlphabetically(self.classList());
 		});
-		self.displayName = 'Welcome to the Character Builder!';
 
 		self.activate = function() {
 			return _i.$.getJSON("app/ClassList.js", function(data) {
@@ -32,6 +34,10 @@ define(function(require) {
 				self.classList(searchResults);
 			}
 		};
+
+		self.selectClass = function(selectedClassName){
+			self.selectedClassName(selectedClassName);
+		}
 
 	};
 

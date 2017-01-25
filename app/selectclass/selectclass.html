@@ -1,12 +1,13 @@
+<div class="jumbotron">
+	<div class="container-fluid bg-3 text-center">
 
-	<div class="jumbotron">
-		<div class="container-fluid bg-3 text-center" >
-			<h2 data-bind="text:displayName"></h2>
+		<h2 data-bind="text:displayName"></h2>
 
-			<div data-bind="foreach: classList">
-				<div class="col-md-4">
-						<button type="button" class="list-group-item list-group-item-action" data-bind="text:name,click: $parent.selectClass"></button>
-				</div>
+		<div data-bind="foreach: classList">
+			<div class="col-md-4" data-bind="fadeVisible:{shouldFade:$parent.shouldFade, className: $data.name}">
+				<button type="button" class="list-group-item list-group-item-action" data-bind="text:name, click: function(){$parent.selectClass(name)}"></button>
 			</div>
 		</div>
+
+	</div>
 </div>
