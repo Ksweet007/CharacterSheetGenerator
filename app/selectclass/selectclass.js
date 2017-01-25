@@ -11,7 +11,7 @@ define(function(require) {
 		self.data = null;
 		self.initialClassList = _i.ko.observableArray([]);
 		self.classList = _i.ko.observableArray([]);
-		self.selectedClassName = _i.ko.observable('');
+		self.selectedClassId = _i.ko.observable(0);
 		self.shouldFade = _i.ko.observable(false);
 		self.displayName = 'Select Class';
 
@@ -22,7 +22,7 @@ define(function(require) {
 		self.activate = function() {
 			return _i.$.getJSON("app/ClassList.js", function(data) {
 				var mappedList = _i.$.map(data.Classes,function(obj,index){
-					obj.id = index;
+					obj.id = index + 1;
 					return obj;
 				});
 
@@ -40,8 +40,8 @@ define(function(require) {
 			}
 		};
 
-		self.selectClass = function(selectedClassName) {
-			self.selectedClassName(selectedClassName);
+		self.selectClass = function(selectedClassId) {
+			self.selectedClassId(selectedClassId);
 		}
 
 	};

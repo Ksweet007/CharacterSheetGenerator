@@ -8,18 +8,17 @@ define(function(require){
 	    init: function(element, valueAccessor, allBindings, viewModel, bindingContext) {
 			var $element = _i.$(element);
 			var value = valueAccessor();
-			var isSelected = _i.ko.observable(true);
 
 	    },
 	    update: function(element, valueAccessor) {
 	        var $element = _i.$(element);
 	        var value = valueAccessor();
 
-					if(value.selectedClassId() > 0){
+					if(value.selectedClassId() === 0){
 						return;
 					}
 
-					if(value.className === value.selectedClassId()){
+					if(value.classId === value.selectedClassId()){
 						$element.fadeIn();
 					}
 					else{

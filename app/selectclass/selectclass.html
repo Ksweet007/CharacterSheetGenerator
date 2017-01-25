@@ -4,8 +4,8 @@
 		<h2 data-bind="text:displayName"></h2>
 
 		<div data-bind="foreach: classList">
-			<div class="col-md-4" data-bind="fadeVisible:{shouldFade:$parent.shouldFade, className: $data.name, selectedClassName: $parent.selectedClassId}">
-				<button type="button" class="list-group-item list-group-item-action" data-bind="text:name, click: function(){$parent.selectClass(name)}"></button>
+			<div class="col-md-4" data-bind="fadeVisible:{shouldFade:$parent.shouldFade, classId: $data.id, selectedClassId: $parent.selectedClassId}">
+				<button type="button" class="list-group-item list-group-item-action" data-bind="text:name, click: function(){$parent.selectClass(id)}"></button>
 			</div>
 		</div>
 
