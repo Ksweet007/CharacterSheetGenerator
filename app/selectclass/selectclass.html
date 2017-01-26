@@ -3,12 +3,11 @@
 
 		<h2 data-bind="text:displayName"></h2>
 
-<ul data-bind="columnbuilder: {data: classListToBind, afterAdd:classFadeIn, beforeRemove: classFadeOut }" class="list-group">
-		<li class="list-group-item col-md-4">
+		<ul data-bind="foreach: {data: classListToBind, afterAdd:classFadeIn, beforeRemove: classFadeOut }" class="list-group">
+			<li class="list-group col-md-4">
 				<button type="button" class="list-group-item list-group-item-action" data-bind="text:name, css:{selectionTitlebar: $data.id === $parent.selectedClassId()}, click: $parent.selectClass"></button>
-		</li>
-</ul>
-
+			</li>
+		</ul>
 
 	</div>
 </div>

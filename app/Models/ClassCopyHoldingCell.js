@@ -23,15 +23,14 @@
 			name: "Spellcasting",
 			source: ["P", 58],
 			minlevel: 1,
-//////LEFT OFF HERE
-			description: "You can cast prepared cleric cantrips/spells, using Wisdom as your spellcasting ability" + "\n   " + "I can use a holy symbol as a spellcasting focus" + "\n   " + "I can cast my prepared cleric spells as rituals if they have the ritual tag",
+			description: "You can cast prepared cleric cantrips/spells, using Wisdom as your spellcasting ability. You can use a holy symbol as a spellcasting focus. You can cast your prepared cleric spells as rituals if they have the ritual tag",
 			additional: ["3 cantrips known", "3 cantrips known", "3 cantrips known", "4 cantrips known", "4 cantrips known", "4 cantrips known", "4 cantrips known", "4 cantrips known", "4 cantrips known", "5 cantrips known", "5 cantrips known", "5 cantrips known", "5 cantrips known", "5 cantrips known", "5 cantrips known", "5 cantrips known", "5 cantrips known", "5 cantrips known", "5 cantrips known", "5 cantrips known"],
 		},
-		"subclassfeature1": {
+		{
 			name: "Divine Domain",
 			source: ["P", 58],
 			minlevel: 1,
-			description: "\n   " + "Choose a Domain related to your deity and put it in the \"Class\" field on the first page" + "\n   " + "Choose either Arcana, Death, Life, Light, Nature, Tempest, Trickery, or War Domain",
+			description: "Choose a Domain related to your deity and put it in the \"Class\" field on the first page" + "\n   " + "Choose either Arcana, Death, Life, Light, Nature, Tempest, Trickery, or War Domain",
 		},
 		"subclassfeature1.1": {
 			name: "",

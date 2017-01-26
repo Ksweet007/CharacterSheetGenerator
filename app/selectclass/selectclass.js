@@ -35,8 +35,14 @@ define(function(require) {
 		}, self);
 
 		self.activate = function() {
-			return _i.$.getJSON("app/ClassList.js", function(data) {
+			$.couch.info({
+			    success: function(data) {
+			        console.log(data);
+			    }
+			});
+			//return _i.$.getJSON("app/ClassList.js", function(data) {
 			//return _i.$.getJSON("app/Models/FinalClassList.js", function(data) {
+			return _i.$.getJSON("http://localhost:5984",function(data){
 				var mappedList = _i.$.map(data.Classes, function(obj, index) {
 					obj.id = index + 1;
 					return obj;

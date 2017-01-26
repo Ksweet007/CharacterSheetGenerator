@@ -50,3 +50,8 @@ button.list-group-item:hover{
   border-color: #080808 !important;
   color: grey !important;
 }
+.list-group{
+	margin:0 !important;
+	padding:0px !important;
+	list-style: none;
+}
