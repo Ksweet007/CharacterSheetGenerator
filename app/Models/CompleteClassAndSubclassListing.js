@@ -1,9 +1,3 @@
-// 
-// SYNTAX
-// https://www.dropbox.com/sh/lvmal6hhtwfdk8u/AAB_UdD3MF_5Vir3Wu46vje4a?dl=0
-//
-// FANMADE
-// https://www.dropbox.com/sh/41cvhipdtmogl1u/AABjnnQnGBNihC8578snxh_ua?dl=0
 var ClassList = {
 	"barbarian" : {
 		regExpSearch : /^((?=.*(marauder|barbarian|viking|(norse|tribes?|clans?)(wo)?m(a|e)n))|((?=.*(warrior|fighter))(?=.*(feral|tribal)))).*$/i,

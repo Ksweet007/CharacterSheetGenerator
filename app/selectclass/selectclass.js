@@ -61,8 +61,10 @@ define(function(require) {
 			} else {
 				self.selectedClassId(item.id);
 			}
-		}
+		};
 
 
 	};
+
+	
 });
