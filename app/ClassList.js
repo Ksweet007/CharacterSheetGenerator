@@ -1,5 +1,5 @@
-{
-	"Classes": [{
+
+	[{
 		"name": "Barbarian",
 		"id" : 1,
 		"source": ["P", 46],
@@ -190,4 +190,3 @@
 		"die": 12,
 		"saves": ["Str", "Con"]
 	}]
-}
