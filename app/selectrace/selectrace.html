@@ -1,36 +1,13 @@
-
+<div class="jumbotron">
 	<div class="container-fluid bg-3 text-center">
-    <h2 data-bind="text:displayName"></h2>
-    <!-- css:{'inactive': !IsSelectingProduct(),'active': IsSelectingProduct()} -->
 
-<!-- every 4 should add a new coulmn -->
-    <!-- ko if: columnCount() === 1 -->
-    <div class="list-group col-md-4" data-bind="foreach: classList">
-        <button type="button" class="list-group-item list-group-item-action" data-bind="text:name,click: selectClass"></button>
-    </div>
-    <!-- /ko -->
+		<h2 data-bind="text:displayName"></h2>
 
-    <!-- ko if: columnCount() === 2 -->
-    <div class="list-group col-md-4" data-bind="foreach: classList">
-        <button type="button" class="list-group-item list-group-item-action" data-bind="text:name,click: selectClass"></button>
-    </div>
+		<div data-bind="foreach: {data: classListToBind, afterAdd:classFadeIn, beforeRemove: classFadeOut }">
+			<div class="col-md-4">
+				<button type="button" class="list-group-item list-group-item-action" data-bind="text:name, css:{selectionTitlebar: $data.id === $parent.selectedClassId()}, click: $parent.selectClass"></button>
+			</div>
+		</div>
 
-    <div class="list-group col-md-4" data-bind="foreach: classList">
-        <button type="button" class="list-group-item list-group-item-action" data-bind="text:name,click: selectClass"></button>
-    </div>
-    <!-- /ko -->
-
-    <!-- ko if: columnCount() === 3 -->
-    <div class="list-group col-md-4" data-bind="foreach: classList">
-        <button type="button" class="list-group-item list-group-item-action" data-bind="text:name,click: selectClass"></button>
-    </div>
-
-    <div class="list-group col-md-4" data-bind="foreach: classList">
-        <button type="button" class="list-group-item list-group-item-action" data-bind="text:name,click: selectClass"></button>
-    </div>
-
-    <div class="list-group col-md-4" data-bind="foreach: classList">
-        <button type="button" class="list-group-item list-group-item-action" data-bind="text:name,click: selectClass"></button>
-    </div>
-    <!-- /ko -->
+	</div>
 </div>

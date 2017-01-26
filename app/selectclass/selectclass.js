@@ -54,11 +54,12 @@ define(function(require) {
 			}
 		};
 
-		self.selectClass = function(selectedClassId) {
-			if (selectedClassId === self.selectedClassId()) {
+		self.selectClass = function(item, event) {
+			var $element = _i.$(event.target);
+			if (item.id === self.selectedClassId()) {
 				self.selectedClassId(0);
 			} else {
-				self.selectedClassId(selectedClassId);
+				self.selectedClassId(item.id);
 			}
 		}
 

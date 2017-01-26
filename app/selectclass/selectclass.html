@@ -5,7 +5,7 @@
 
 		<div data-bind="foreach: {data: classListToBind, afterAdd:classFadeIn, beforeRemove: classFadeOut }">
 			<div class="col-md-4">
-				<button type="button" class="list-group-item list-group-item-action" data-bind="text:name, css:{selectionTitlebar: $data.id === $parent.selectedClassId()}, click: function(){$parent.selectClass(id)}"></button>
+				<button type="button" class="list-group-item list-group-item-action" data-bind="text:name, css:{selectionTitlebar: $data.id === $parent.selectedClassId()}, click: $parent.selectClass"></button>
 			</div>
 		</div>
 

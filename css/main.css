@@ -1,3 +1,15 @@
+html,body,.container, #applicationHost, .durandal-wrapper{
+  height: 100% !important;
+}
+.maxHeight{
+  height: 100% !important;
+}
+.jumbotron{
+  height: 100% !important;
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+}
+
 .classSelect {
     color: #fff;
     background-color: #d9534f;
