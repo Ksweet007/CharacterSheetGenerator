@@ -1,9 +1,10 @@
 define(function(require) {
-    var _i = {
-        ko: require('knockout')
-    };
+	var _i = {
+		ko: require('knockout')
+	};
 
-    require('./cls');
-	
+	require('./cls');
+
+	require('./bindinghandlers/columnbuilder');
 
 });

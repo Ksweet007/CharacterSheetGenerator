@@ -36,6 +36,7 @@ define(function(require) {
 
 		self.activate = function() {
 			return _i.$.getJSON("app/ClassList.js", function(data) {
+			//return _i.$.getJSON("app/Models/FinalClassList.js", function(data) {
 				var mappedList = _i.$.map(data.Classes, function(obj, index) {
 					obj.id = index + 1;
 					return obj;
@@ -66,5 +67,5 @@ define(function(require) {
 
 	};
 
-	
+
 });
