@@ -1,138 +1,30 @@
-"bard": {
-	name: "Bard",
-	source: ["P", 51],
-	primaryability: "Charisma",
-	abilitysave: "Charisma",
-	prereqs: "Charisma 13",
-	improvements: [0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 5, 5],
-	die: 8,
-	saves: ["Dex", "Cha"],
-	skills: ["Choose any three skills"],
-	multiclassskills: ["Choose any one skill"],
-	tools: ["Three musical instruments"],
-	multiclassTools: ["One musical instrument"],
-	armor: [true, false, false, false],
-	multiclassArmor: [true, false, false, false],
-	weapons: [true, false, ["hand crossbow", "longsword", "rapier", "shortsword"]],
-	startingequipment: ["A rapier -or- a longsword -or- any simple weapon", "A diplomat's pack -or- an entertainer's pack", "A lute -or- any other musical instrument", "Leather armor and a dagger.", "Alternatively, choose 5d4 x 10 gp worth of starting equipment instead of both the class' and the background's starting equipment."],
-	subclasses: ["Bard College", ["college of lore", "college of valor"]],
-	attacks: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-	spellcastingKnown: {
-		cantrips: [2, 2, 2, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
-		spells: [4, 5, 6, 7, 8, 9, 10, 11, 12, 12, 13, 13, 13, 13, 14, 14, 15, 16, 16, 16],
-	},
-	features: [
-    {
-			name: "Spellcasting",
-			source: ["P", 52],
-			minlevel: 1,
-			description: "Cast bard cantrips/spells using Charisma as spellcasting ability. Use a musical instrument as a spellcasting focus. Cast known bard spells as rituals if they have the ritual tag",
-			additional: ["2 cantrips 4 spells known", "2 cantrips 5 spells known", "2 cantrips 6 spells known", "3 cantrips 7 spells known", "3 cantrips 8 spells known", "3 cantrips  9 spells known", "3 cantrips  10 spells known", "3 cantrips  11 spells known", "3 cantrips  12 spells known", "4 cantrips  14 spells known", "4 cantrips  15 spells known", "4 cantrips  15 spells known", "4 cantrips  16 spells known", "4 cantrips  18 spells known", "4 cantrips  19 spells known", "4 cantrips  19 spells known", "4 cantrips  20 spells known", "4 cantrips  22 spells known", "4 cantrips  22 spells known", "4 cantrips  22 spells known"],
-		},
-		{
-			name: "Bardic Inspiration",
-			source: ["P", 53],
-			minlevel: 1,
-			description: "As a bonus action, a creature in 60 ft that can hear you gets an inspiration die (max 1). For 10 min, the recipient can add it to one ability check, attack roll, or saving throw. This addition can be done after seeing the d20 roll, but before knowing the outcome",
-			additional: ["d6", "d6", "d6", "d6", "d8", "d8", "d8", "d8", "d8", "d10", "d10", "d10", "d10", "d10", "d12", "d12", "d12", "d12", "d12", "d12"],
-			usages: "Charisma modifier per",
-			recovery: "long rest",
-			action: ["bonus action", ""]
-		},
-		{
-			name: "Jack of All Trades",
-			source: ["P", 54],
-			minlevel: 2,
-			description: "You can add half your proficiency bonus to any ability check that doesn't already include it",
-		},
-		{
-			name: "Song of Rest",
-			source: ["P", 54],
-			minlevel: 2,
-			description: "Those that use HD and can hear your performance during a short rest get extra healing",
-			additional: ["", "d6", "d6", "d6", "d6", "d6", "d6", "d6", "d8", "d8", "d8", "d8", "d10", "d10", "d10", "d10", "d12", "d12", "d12", "d12"]
-		},
-		{
-			name: "Bard College",
-			source: ["P", 54],
-			minlevel: 3,
-			description: "Choose a College that reflects your personality. Choose either the College of Lore or the College of Valor"
-		},
-		{
-			name: "Expertise",
-			source: ["P", 54],
-			minlevel: 3,
-			description: "You gain expertise with two skills you are proficient with; two more at 10th level",
-			additional: ["", "", "with two skills", "with two skills", "with two skills", "with two skills", "with two skills", "with two skills", "with two skills", "with four skills", "with four skills", "with four skills", "with four skills", "with four skills", "with four skills", "with four skills", "with four skills", "with four skills", "with four skills", "with four skills"],
-		},
-		{
-			name: "Font of Inspiration",
-			source: ["P", 54],
-			minlevel: 5,
-			description: "You can now also recover your expended Bardic Inspiration uses after a short rest"
-		},
-		{
-			name: "Countercharm",
-			source: ["P", 54],
-			minlevel: 6,
-			description: "As an action, you can do a performance that lasts until the end of your next turn. While it lasts, any friend in earshot (30 ft) has adv. on saves vs. frightened/charmed",
-			action: ["action", ""]
-		},
-		{
-			name: "Magical Secrets",
-			source: ["P", 54],
-			minlevel: 10,
-			description: "You can add two spells/cantrips from any class to your spells known; +2 at level 14 and level 18",
-			additional: ["", "", "", "", "", "", "", "", "", "two spells/cantrips", "two spells/cantrips", "two spells/cantrips", "two spells/cantrips", "four spells/cantrips", "four spells/cantrips", "four spells/cantrips", "four spells/cantrips", "six spells/cantrips", "six spells/cantrips", "six spells/cantrips"],
-			spellcastingBonus: {
-				name: "Magical Secret",
-				class: "any",
-				times: [0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 4, 4, 4, 4, 6, 6, 6]
-			},
-		},
-		{
-			name: "Superior Inspiration",
-			source: ["P", 54],
-			minlevel: 20,
-			description: "You regain one use of Bardic Inspiration if you have no more remaining when you roll initiative"
-		}
-	]
-
-},
-
 "cleric": {
-
 	name: "Cleric",
 	source: ["P", 56],
-	primaryAbility: "\n \u2022 Cleric: Wisdom;",
+	primaryAbility: "Wisdom;",
 	abilitySave: 5,
-	prereqs: "\n \u2022 Cleric: Wisdom 13;",
+	prereqs: "Wisdom 13;",
 	improvements: [0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 5, 5],
 	die: 8,
 	saves: ["Wis", "Cha"],
-	skills: ["\n\n" + toUni("Cleric") + ": Choose two from History, Insight, Medicine, Persuasion, and Religion."],
-	armor: [
-		[true, true, false, true],
-		[true, true, false, true]
-	],
-	weapons: [
-		[true, false]
-	],
-	equipment: "Cleric starting equipment:\n \u2022 A mace -or- a warhammer (if proficient);\n \u2022 Scale mail -or- leather armor -or- chain mail (if proficient);\n \u2022 A light crossbow and 20 bolts -or- any simple weapon;\n \u2022 A priest's pack -or- an explorer's pack;\n \u2022 A shield and a holy symbol.\n\nAlternatively, choose 5d4 \xD7 10 gp worth of starting equipment instead of both the class' and the background's starting equipment.",
+	skills: ["Choose two from History, Insight, Medicine, Persuasion, and Religion."],
+	armor: [[true, true, false, true],[true, true, false, true]],
+	weapons: [[true, false]],
+	equipment: "Cleric starting equipment: A mace -or- a warhammer (if proficient); Scale mail -or- leather armor -or- chain mail (if proficient); A light crossbow and 20 bolts -or- any simple weapon; A priest's pack -or- an explorer's pack; A shield and a holy symbol. Alternatively, choose 5d4 x 10 gp worth of starting equipment instead of both the class' and the background's starting equipment.",
 	subclasses: ["Divine Domain", ["arcana domain", "death domain", "knowledge domain", "life domain", "light domain", "nature domain", "tempest domain", "trickery domain", "war domain"]],
 	attacks: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-	spellcastingFactor: 1,
 	spellcastingKnown: {
 		cantrips: [3, 3, 3, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
 		spells: "list",
 		prepared: true,
 	},
 	features: {
-		"spellcasting": {
+		{
 			name: "Spellcasting",
 			source: ["P", 58],
 			minlevel: 1,
-			description: "\n   " + "I can cast prepared cleric cantrips/spells, using Wisdom as my spellcasting ability" + "\n   " + "I can use a holy symbol as a spellcasting focus" + "\n   " + "I can cast my prepared cleric spells as rituals if they have the ritual tag",
+//////LEFT OFF HERE
+			description: "You can cast prepared cleric cantrips/spells, using Wisdom as your spellcasting ability" + "\n   " + "I can use a holy symbol as a spellcasting focus" + "\n   " + "I can cast my prepared cleric spells as rituals if they have the ritual tag",
 			additional: ["3 cantrips known", "3 cantrips known", "3 cantrips known", "4 cantrips known", "4 cantrips known", "4 cantrips known", "4 cantrips known", "4 cantrips known", "4 cantrips known", "5 cantrips known", "5 cantrips known", "5 cantrips known", "5 cantrips known", "5 cantrips known", "5 cantrips known", "5 cantrips known", "5 cantrips known", "5 cantrips known", "5 cantrips known", "5 cantrips known"],
 		},
 		"subclassfeature1": {
