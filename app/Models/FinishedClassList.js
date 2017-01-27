@@ -1,6 +1,7 @@
 [
 	{
 		"name": "Bard",
+		"powersource":"arcane",
 		"abilitysave": "Charisma",
 		"armor": [true, false, false, false],
 		"attacks": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
@@ -90,7 +91,7 @@
 	},
 	{
 		"name": "Rogue",
-		"abilitysave": "Charisma",
+		"powersource":"martial",
 		"armor": [true, false, false, false],
 		"attacks": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 		"die": 8,
@@ -180,6 +181,7 @@
 	{
 		"name": "Barbarian",
 		"abilitysave": "Charisma",
+		"powersource":"Primal",
 		"armor": [true, false, false, false],
 		"attacks": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 		"die": 8,
@@ -269,6 +271,7 @@
 	{
 		"name": "Cleric",
 		"abilitysave": "Charisma",
+		"powersource":"Divine",
 		"armor": [true, false, false, false],
 		"attacks": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 		"die": 8,

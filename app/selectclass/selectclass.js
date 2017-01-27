@@ -49,12 +49,12 @@ define(function(require) {
 				var openRequest = indexedDB.open("charcreator", 1);
 				openRequest.onupgradeneeded = function(e) {
 					self.db = _i._db.createDatabase(e);
-					_i._db.createObjectStoreFromArray(self.db, ["classes"]);
+					var objectStore = _i._db.createTable(self.db, ["classes"]);
+					_i._db.createIndex(objectStore);
 				}
 				openRequest.onsuccess = function(e) {
 					console.log("--------SUCCESS--------");
 					self.db = e.target.result;
-
 				}
 				openRequest.onerror = function(e) {
 					console.log("--------ERROR--------");
@@ -72,20 +72,14 @@ define(function(require) {
 			}
 		};
 
-		// self.selectClass = function(item, event) {
-		// 	_i._db.addObject(self.db,"classes",self.classList()[0]);
-		// 	//_i._db.getObj(self.db,"classes");
-		// 	//_i._db.getList(self.db,"classes");
-		//
-		// };
-
 		self.selectClass = function(item, event) {
-			var $element = _i.$(event.target);
-			if (item.id === self.selectedClassId()) {
-				self.selectedClassId(0);
-			} else {
-				self.selectedClassId(item.id);
-			}
+
+			// var $element = _i.$(event.target);
+			// if (item.id === self.selectedClassId()) {
+			// 	self.selectedClassId(0);
+			// } else {
+			// 	self.selectedClassId(item.id);
+			// }
 		};
 
 

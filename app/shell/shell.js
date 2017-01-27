@@ -1,4 +1,4 @@
-﻿define(['plugins/router', 'durandal/app'], function (router, app) {
+﻿define(['plugins/router', 'durandal/app'], function (router, app,vemod) {
     var self = this;
     self.searchTerm = ko.observable();
 

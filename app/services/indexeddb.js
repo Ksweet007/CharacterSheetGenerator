@@ -16,39 +16,42 @@ define('services/indexeddb', function(require) {
 		return false;
 	};
 
+	IndexDbCls.prototype.createIndex = function(objectStore) {
+		//first arg is name of index, second is the path (col);
+		objectStore.createIndex("name", "name", {unique: true});
+		objectStore.createIndex("powersource", "powersource", {	unique: false})
+	};
+
 	//Accepts Array of strings using the Store/Table to be created
-	IndexDbCls.prototype.createObjectStoreFromArray = function(database, objStoreArray) {
-		for (var i = 0; i < objStoreArray.length; i++) {
-			var tablename = objStoreArray[i];
-			if (!database.objectStoreNames.contains(tablename)) {
-				database.createObjectStore(tablename,{autoIncrement: true});
-			}
+	IndexDbCls.prototype.createTable = function(database, tablename) {
+		if (!database.objectStoreNames.contains(tablename)) {
+			return database.createObjectStore(tablename, {autoIncrement: true});
 		}
 	};
 
-	IndexDbCls.prototype.createDatabase = function(e){
+	IndexDbCls.prototype.createDatabase = function(e) {
 		console.log("--------RUNNING ONUPGRADENEEDED--------");
 		var thisDB = e.target.result;
 		return thisDB;
 	};
 
-	IndexDbCls.prototype.deleteDatabase = function(database){
+	IndexDbCls.prototype.deleteDatabase = function(database) {
 		var req = indexedDB.deleteDatabase(database);
 		req.onsuccess = function() {
-			console.log("Deleted " +database+ " database successfully");
+			console.log("Deleted " + database + " database successfully");
 		};
 		req.onerror = function() {
-			console.log("Couldn't delete "+database+" database");
+			console.log("Couldn't delete " + database + " database");
 		};
 		req.onblocked = function() {
-			console.log("Couldn't delete " +database+ " database due to the operation being blocked");
+			console.log("Couldn't delete " + database + " database due to the operation being blocked");
 		}
 	};
 
-	IndexDbCls.prototype.addObject = function(database,table,objtosave){
+	IndexDbCls.prototype.addObject = function(database, table, objtosave) {
 		//stringify then parse
 		var stringifiedObj = JSON.stringify(objtosave);
-		if(stringifiedObj !== ""){
+		if (stringifiedObj !== "") {
 			var parsedJSON = JSON.parse(stringifiedObj);
 			objtosave = parsedJSON;
 		}
@@ -66,7 +69,7 @@ define('services/indexeddb', function(require) {
 		}
 	};
 
-	IndexDbCls.prototype.getObj = function(database,table){
+	IndexDbCls.prototype.getObj = function(database, table) {
 		var transaction = database.transaction([table], "readonly");
 		var objectStore = transaction.objectStore(table);
 
@@ -76,25 +79,39 @@ define('services/indexeddb', function(require) {
 
 		//returns our requested object
 		ob.onsuccess = function(e) {
-			console.log("Found Object - ",e.target.result)
+			console.log("Found Object - ", e.target.result)
 		}
 	};
 
-	IndexDbCls.prototype.getList = function(database,table){
+	IndexDbCls.prototype.getList = function(database, table) {
 		var transaction = database.transaction([table], "readonly");
 		var objectStore = transaction.objectStore(table);
 
 		var cursor = objectStore.openCursor();
 
-		cursor.onsuccess = function(e){
+		cursor.onsuccess = function(e) {
 			var result = e.target.result;
-			if(result){
-				console.log("Key",result.key);
-				console.log("Data",result.value);
+			if (result) {
+				console.log("Key", result.key);
+				console.log("Data", result.value);
 				result.continue();
 			}
 		}
 
+	};
+
+	IndexDbCls.prototype.search = function(){
+		var transaction = self.db.transaction(["classes"], "readonly");
+		var store = transaction.objectStore("classes");
+		var index = store.index("name");
+
+		//name is some value
+		var name= "Bard";
+		var request = index.get(name);
+		request.onsuccess = function(e) {
+
+			var result = e.target.result; //THe object found with our request/query
+		}
 	};
 
 	return new IndexDbCls();
