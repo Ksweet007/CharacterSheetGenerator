@@ -5,8 +5,6 @@ define(function(require) {
 		search: require('services/search'),
 		list: require('services/listmanager'),
 		classRepo: require('services/classDB')
-		//_db: require('services/classDB'),
-		//dbutils: require('services/CharacterCreatorAPI')
 	};
 
 	return function() {
@@ -55,29 +53,12 @@ define(function(require) {
 		};
 
 		self.selectClass = function(item, event) {
-			var datatosend = {id:5,name:"nameofoobar"};
-			var stringifiedObj = JSON.stringify(datatosend);
-
-			_i.$.ajax({
-				type: 'POST',
-				url: 'https://ksweet007.cloudant.com/classes',
-				headers: {
-  					"Authorization": "Basic " + btoa('ksweet007' + ":" + '@Manda!!o5'),
-					"Content-Type": "application/json"
-				},
-				data: stringifiedObj,
-				dataType:'application/json'
-
-			}).done(function(reply){
-				console.log("failed");
-			});
-
-			// var $element = _i.$(event.target);
-			// if (item.id === self.selectedClassId()) {
-			// 	self.selectedClassId(0);
-			// } else {
-			// 	self.selectedClassId(item.id);
-			// }
+			var $element = _i.$(event.target);
+			if (item.id === self.selectedClassId()) {
+				self.selectedClassId(0);
+			} else {
+				self.selectedClassId(item.id);
+			}
 		};
 
 
