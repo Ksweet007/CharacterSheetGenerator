@@ -16,9 +16,6 @@ define(function(require) {
 		self.classList = _i.ko.observableArray([]);
 		self.selectedClassId = _i.ko.observable(0);
 		self.displayName = 'Select Class';
-		self.alphaclassList = _i.ko.computed(function() {
-			return _i.list.sortAlphabetically(self.classList());
-		});
 
 		self.classFadeIn = function(elem) {
 			if (elem.nodeType === 1) _i.$(elem).hide().slideDown()
@@ -35,7 +32,7 @@ define(function(require) {
 			return ko.utils.arrayFilter(self.classList(), function(item) {
 				return item.id === desiredType;
 			});
-		}, self);
+		});
 
 		self.activate = function() {
 			_i.$.getJSON("app/Models/FinishedCLassList.js", function(data) {
@@ -49,10 +46,10 @@ define(function(require) {
 
 			//setup indexedDB -- This should move to the router for durandal and load a table for each view
 			if (_i._db.isCompatable) {
-				var openRequest = indexedDB.open("test_v2", 1);
+				var openRequest = indexedDB.open("charcreator", 1);
 				openRequest.onupgradeneeded = function(e) {
 					self.db = _i._db.createDatabase(e);
-					_i._db.createObjectStoreFromArray(self.db, ["firstOS", "secondOS", "people"]);
+					_i._db.createObjectStoreFromArray(self.db, ["classes"]);
 				}
 				openRequest.onsuccess = function(e) {
 					console.log("--------SUCCESS--------");
@@ -75,37 +72,21 @@ define(function(require) {
 			}
 		};
 
-		self.selectClass = function(item, event) {
-;
-			//transaction with the DB ([table/store(s)], transaction type) readonly or readwrite
-			var transaction = self.db.transaction(["people"], "readwrite");
-			var store = transaction.objectStore("people");
-
-			var person = {
-				name: name,
-				created: new Date()
-			};
-
-			//Perform the add
-			var request = store.add(person);
-			request.onerror = function(e){
-				console.log("--------ERROR ADDING--------", e.target.error.name);
-			}
-
-			request.onsuccess = function(e){
-				console.log("--------OBJECT ADDED--------")
-			}
-
-		};
-
 		// self.selectClass = function(item, event) {
-		// 	// var $element = _i.$(event.target);
-		// 	// if (item.id === self.selectedClassId()) {
-		// 	// 	self.selectedClassId(0);
-		// 	// } else {
-		// 	// 	self.selectedClassId(item.id);
-		// 	// }
+		// 	_i._db.addObject(self.db,"classes",self.classList()[0]);
+		// 	//_i._db.getObj(self.db,"classes");
+		// 	//_i._db.getList(self.db,"classes");
+		//
 		// };
+
+		self.selectClass = function(item, event) {
+			var $element = _i.$(event.target);
+			if (item.id === self.selectedClassId()) {
+				self.selectedClassId(0);
+			} else {
+				self.selectedClassId(item.id);
+			}
+		};
 
 
 	};

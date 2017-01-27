@@ -24,13 +24,13 @@ define('services/indexeddb', function(require) {
 				database.createObjectStore(tablename,{autoIncrement: true});
 			}
 		}
-	}
+	};
 
 	IndexDbCls.prototype.createDatabase = function(e){
 		console.log("--------RUNNING ONUPGRADENEEDED--------");
 		var thisDB = e.target.result;
 		return thisDB;
-	}
+	};
 
 	IndexDbCls.prototype.deleteDatabase = function(database){
 		var req = indexedDB.deleteDatabase(database);
@@ -43,7 +43,59 @@ define('services/indexeddb', function(require) {
 		req.onblocked = function() {
 			console.log("Couldn't delete " +database+ " database due to the operation being blocked");
 		}
-	}
+	};
+
+	IndexDbCls.prototype.addObject = function(database,table,objtosave){
+		//stringify then parse
+		var stringifiedObj = JSON.stringify(objtosave);
+		if(stringifiedObj !== ""){
+			var parsedJSON = JSON.parse(stringifiedObj);
+			objtosave = parsedJSON;
+		}
+		var transaction = database.transaction([table], "readwrite");
+		var store = transaction.objectStore(table);
+
+		//Perform the add
+		var request = store.add(objtosave);
+		request.onerror = function(e) {
+			console.log("Couldn't add object - ", e.target.error.name);
+		}
+
+		request.onsuccess = function(e) {
+			console.log("Object added successfully")
+		}
+	};
+
+	IndexDbCls.prototype.getObj = function(database,table){
+		var transaction = database.transaction([table], "readonly");
+		var objectStore = transaction.objectStore(table);
+
+		//x is key by default
+		var key = 1;
+		var ob = objectStore.get(Number(key));
+
+		//returns our requested object
+		ob.onsuccess = function(e) {
+			console.log("Found Object - ",e.target.result)
+		}
+	};
+
+	IndexDbCls.prototype.getList = function(database,table){
+		var transaction = database.transaction([table], "readonly");
+		var objectStore = transaction.objectStore(table);
+
+		var cursor = objectStore.openCursor();
+
+		cursor.onsuccess = function(e){
+			var result = e.target.result;
+			if(result){
+				console.log("Key",result.key);
+				console.log("Data",result.value);
+				result.continue();
+			}
+		}
+
+	};
 
 	return new IndexDbCls();
 });
