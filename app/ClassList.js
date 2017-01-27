@@ -1,4 +1,4 @@
-
+//THIS FORMAT IS WHAT COUCHDB NEEDS
 	[{
 		"name": "Barbarian",
 		"id" : 1,

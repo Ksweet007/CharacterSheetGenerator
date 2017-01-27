@@ -3,7 +3,8 @@ define(function(require) {
 		ko: require('knockout'),
 		$: require('jquery'),
 		search: require('services/search'),
-		list: require('services/listmanager')
+		list: require('services/listmanager'),
+		classRepo: require('services/classDB')
 	};
 
 	return function() {
@@ -35,25 +36,14 @@ define(function(require) {
 		}, self);
 
 		self.activate = function() {
-			// _i.$.couch.urlPrefix = "http://localhost:5984";
-			// _i.$.couch.allDbs({
-			// 	success: function(data) {
-			// 		console.log(data);
-			// 	}
-			// });
-
-			//return _i.$.getJSON("app/ClassList.js", function(data) {
-			return _i.$.getJSON("app/Models/FinalClassList.js", function(data) {
-				var mappedList = _i.$.map(data.Classes, function(obj, index) {
+			return _i.$.getJSON("app/Models/FinishedCLassList.js", function(data) {
+				var mappedList = _i.$.map(data, function(obj, index) {
 					obj.id = index + 1;
 					return obj;
 				});
 				self.data = mappedList;
-				self.classList(data.Classes);
+				self.classList(data);
 			});
-
-
-
 		};
 
 		self.search = function(searchTerm) {
@@ -66,40 +56,8 @@ define(function(require) {
 		};
 
 		self.selectClass = function(item, event) {
-			_i.$.couch.urlPrefix = "http://localhost:5984";
-			var promise = _i.$.getJSON("app/ClassList.js",function(datass){
-				//var jsonDocs = JSON.stringify(datass);
-				var jsonparsed = JSON.parse(JSON.stringify(datass));
-				$.couch.db("classes").bulkSave({"docs": jsonparsed}, {
-				    success: function(data) {
-				        console.log(data);
-				    },
-				    error: function(status) {
-				        console.log(status);
-				    }
-				});
-			});
-
-
-
-
-
-
-
-
-
-
-
-
-			// _i.$.couch.urlPrefix = "http://localhost:5984";
-			// _i.$.couch.db("classes").saveDoc(doc, {
-			// 	success: function(data) {
-			// 		console.log(data);
-			// 	},
-			// 	error: function(status) {
-			// 		console.log(status);
-			// 	}
-			// });
+			//var jsonString = JSON.stringify(self.classList());
+			_i.classRepo.saveClass(self.classList());
 			var $element = _i.$(event.target);
 			if (item.id === self.selectedClassId()) {
 				self.selectedClassId(0);
