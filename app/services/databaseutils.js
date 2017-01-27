@@ -1,27 +1,25 @@
-define('services/indexeddb', function(require) {
+define('services/databaseutils', function(require) {
 	var _i = {
 		ko: require('knockout'),
 		$: require('jquery')
 	};
 
-	function IndexDbCls() {
-		var self = this;
-		//https://code.tutsplus.com/tutorials/working-with-indexeddb--net-34673
-	}
-
-	IndexDbCls.prototype.isCompatable = function() {
+	function DbUtilCls() {}
+    //https://code.tutsplus.com/tutorials/working-with-indexeddb--net-34673
+    
+	DbUtilCls.prototype.isCompatable = function() {
 		if ("indexedDB" in window) {
 			return true;
 		}
 		return false;
 	};
 
-	IndexDbCls.prototype.createIndex = function(objectStore) {
+	DbUtilCls.prototype.createIndex = function(objectStore) {
 		objectStore.createIndex("name", "name", {unique: true});
 		objectStore.createIndex("powersource", "powersource", {	unique: false})
 	};
 
-	IndexDbCls.prototype.createTable = function(database) {
+	DbUtilCls.prototype.createTable = function(database) {
 		var tablename = ["classes"];
 		if (!database.objectStoreNames.contains(tablename)) {
 			var objectStore = database.createObjectStore(tablename, {autoIncrement: true});
@@ -31,12 +29,12 @@ define('services/indexeddb', function(require) {
 		}
 	};
 
-	IndexDbCls.prototype.createDatabase = function(e) {
+	DbUtilCls.prototype.createDatabase = function(e) {
 		var thisDB = e.target.result;
 		return thisDB;
 	};
 
-	IndexDbCls.prototype.deleteDatabase = function(database) {
+	DbUtilCls.prototype.deleteDatabase = function(database) {
 		var req = indexedDB.deleteDatabase(database);
 		req.onsuccess = function() {
 			console.log("Deleted " + database + " database successfully");
@@ -49,7 +47,7 @@ define('services/indexeddb', function(require) {
 		}
 	};
 
-	IndexDbCls.prototype.addObject = function(database, table, objtosave) {
+	DbUtilCls.prototype.addObject = function(database, table, objtosave) {
 		//stringify then parse
 		var stringifiedObj = JSON.stringify(objtosave);
 		if (stringifiedObj !== "") {
@@ -70,7 +68,7 @@ define('services/indexeddb', function(require) {
 		}
 	};
 
-	IndexDbCls.prototype.getObj = function(database, table) {
+	DbUtilCls.prototype.getObj = function(database, table) {
 		var transaction = database.transaction([table], "readonly");
 		var objectStore = transaction.objectStore(table);
 
@@ -84,7 +82,7 @@ define('services/indexeddb', function(require) {
 		}
 	};
 
-	IndexDbCls.prototype.getList = function(database, table) {
+	DbUtilCls.prototype.getList = function(database, table) {
 		var transaction = database.transaction([table], "readonly");
 		var objectStore = transaction.objectStore(table);
 
@@ -101,7 +99,7 @@ define('services/indexeddb', function(require) {
 
 	};
 
-	IndexDbCls.prototype.search = function(){
+	DbUtilCls.prototype.search = function(){
 		var transaction = self.db.transaction(["classes"], "readonly");
 		var store = transaction.objectStore("classes");
 		var index = store.index("name");
@@ -115,5 +113,5 @@ define('services/indexeddb', function(require) {
 		}
 	};
 
-	return new IndexDbCls();
+	return new DbUtilCls();
 });

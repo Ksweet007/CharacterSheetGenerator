@@ -4,14 +4,14 @@ define(function(require) {
 		$: require('jquery'),
 		search: require('services/search'),
 		list: require('services/listmanager'),
-		classRepo: require('services/classDB'),
-		_db: require('services/indexeddb')
+		classRepo: require('services/classDB')
+		//_db: require('services/classDB'),
+		//dbutils: require('services/CharacterCreatorAPI')
 	};
 
 	return function() {
 		var self = this;
 		self.data = null;
-		self.db = null;
 		self.initialClassList = _i.ko.observableArray([]);
 		self.classList = _i.ko.observableArray([]);
 		self.selectedClassId = _i.ko.observable(0);
@@ -43,24 +43,6 @@ define(function(require) {
 				self.data = mappedList;
 				self.classList(data);
 			});
-
-			//setup indexedDB -- This should move to the router for durandal and load a table for each view
-			if (_i._db.isCompatable) {
-				var openRequest = indexedDB.open("charcreator", 1);
-				openRequest.onupgradeneeded = function(e) {
-					self.db = _i._db.createDatabase(e);
-					var objectStore = _i._db.createTable(self.db, ["classes"]);
-					_i._db.createIndex(objectStore);
-				}
-				openRequest.onsuccess = function(e) {
-					console.log("--------SUCCESS--------");
-					self.db = e.target.result;
-				}
-				openRequest.onerror = function(e) {
-					console.log("--------ERROR--------");
-					console.dir(e);
-				}
-			}
 		};
 
 		self.search = function(searchTerm) {
@@ -73,6 +55,22 @@ define(function(require) {
 		};
 
 		self.selectClass = function(item, event) {
+			var datatosend = {id:5,name:"nameofoobar"};
+			var stringifiedObj = JSON.stringify(datatosend);
+
+			_i.$.ajax({
+				type: 'POST',
+				url: 'https://ksweet007.cloudant.com/classes',
+				headers: {
+  					"Authorization": "Basic " + btoa('ksweet007' + ":" + '@Manda!!o5'),
+					"Content-Type": "application/json"
+				},
+				data: stringifiedObj,
+				dataType:'application/json'
+
+			}).done(function(reply){
+				console.log("failed");
+			});
 
 			// var $element = _i.$(event.target);
 			// if (item.id === self.selectedClassId()) {
@@ -84,6 +82,4 @@ define(function(require) {
 
 
 	};
-
-
 });
