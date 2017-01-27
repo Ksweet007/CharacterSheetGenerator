@@ -4,12 +4,14 @@ define(function(require) {
 		$: require('jquery'),
 		search: require('services/search'),
 		list: require('services/listmanager'),
-		classRepo: require('services/classDB')
+		classRepo: require('services/classDB'),
+		_db: require('services/indexeddb')
 	};
 
 	return function() {
 		var self = this;
 		self.data = null;
+		self.db = null;
 		self.initialClassList = _i.ko.observableArray([]);
 		self.classList = _i.ko.observableArray([]);
 		self.selectedClassId = _i.ko.observable(0);
@@ -36,7 +38,7 @@ define(function(require) {
 		}, self);
 
 		self.activate = function() {
-			return _i.$.getJSON("app/Models/FinishedCLassList.js", function(data) {
+			_i.$.getJSON("app/Models/FinishedCLassList.js", function(data) {
 				var mappedList = _i.$.map(data, function(obj, index) {
 					obj.id = index + 1;
 					return obj;
@@ -44,6 +46,24 @@ define(function(require) {
 				self.data = mappedList;
 				self.classList(data);
 			});
+
+			//setup indexedDB -- This should move to the router for durandal and load a table for each view
+			if (_i._db.isCompatable) {
+				var openRequest = indexedDB.open("test_v2", 1);
+				openRequest.onupgradeneeded = function(e) {
+					self.db = _i._db.createDatabase(e);
+					_i._db.createObjectStoreFromArray(self.db, ["firstOS", "secondOS", "people"]);
+				}
+				openRequest.onsuccess = function(e) {
+					console.log("--------SUCCESS--------");
+					self.db = e.target.result;
+
+				}
+				openRequest.onerror = function(e) {
+					console.log("--------ERROR--------");
+					console.dir(e);
+				}
+			}
 		};
 
 		self.search = function(searchTerm) {
@@ -56,15 +76,36 @@ define(function(require) {
 		};
 
 		self.selectClass = function(item, event) {
-			//var jsonString = JSON.stringify(self.classList());
-			_i.classRepo.saveClass(self.classList());
-			var $element = _i.$(event.target);
-			if (item.id === self.selectedClassId()) {
-				self.selectedClassId(0);
-			} else {
-				self.selectedClassId(item.id);
+;
+			//transaction with the DB ([table/store(s)], transaction type) readonly or readwrite
+			var transaction = self.db.transaction(["people"], "readwrite");
+			var store = transaction.objectStore("people");
+
+			var person = {
+				name: name,
+				created: new Date()
+			};
+
+			//Perform the add
+			var request = store.add(person);
+			request.onerror = function(e){
+				console.log("--------ERROR ADDING--------", e.target.error.name);
 			}
+
+			request.onsuccess = function(e){
+				console.log("--------OBJECT ADDED--------")
+			}
+
 		};
+
+		// self.selectClass = function(item, event) {
+		// 	// var $element = _i.$(event.target);
+		// 	// if (item.id === self.selectedClassId()) {
+		// 	// 	self.selectedClassId(0);
+		// 	// } else {
+		// 	// 	self.selectedClassId(item.id);
+		// 	// }
+		// };
 
 
 	};
