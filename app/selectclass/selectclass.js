@@ -5,7 +5,6 @@ define(function(require) {
 		search: require('_custom/services/search'),
 		list: require('_custom/services/listmanager'),
 		charajax: require('_custom/services/WebAPI'),
-		cleric: require('services/Cleric'),
 		classListing: require('Models/ClassObjectListing')
 	};
 
@@ -37,41 +36,12 @@ define(function(require) {
 		self.activate = function() {
 			var classListing = _i.classListing;
 			var mappedList = _i.$.map(classListing,function(obj,index){
-
+				var item = obj.Class;
+				item.id = obj._id;
+				return item;
 			});
-			//JSON.stringify(cleric.Class)
-			// var fied = JSON.stringify();
-			// return _i.$.getJSON({url:'app/Models/testo.js', method:'GET'}).done(function(data) {
-			// 	var mappedList = _i.$.map(data.rows, function(obj, index) {
-			// 		obj.doc.Class
-			// 		obj.doc.Class.id = index + 1;
-			// 		obj.doc.id = index + 1;
-			// 		responseData.push(obj.doc.Class);
-			// 		return obj.doc.Class;
-			// 	});
-			// 	self.data = mappedList;
-			// 	self.classList(responseData);
-			// });
-			// return _i.$.getJSON("app/Models/testo.js", function(data) {
-			// 	var mappedList = _i.$.map(data.Classes, function(obj, index) {
-			// 		obj.id = index + 1;
-			// 		return obj;
-			// 	});
-			// 	self.data = mappedList;
-			// 	self.classList(data.Classes);
-			// });
-			// var responseData = [];
-			// _i.charajax.get('classes/_all_docs?include_docs=true').done(function(data) {
-			// 	var mappedList = _i.$.map(data.rows, function(obj, index) {
-			// 		obj.doc.Class
-			// 		obj.doc.Class.id = index + 1;
-			// 		obj.doc.id = index + 1;
-			// 		responseData.push(obj.doc.Class);
-			// 		return obj.doc.Class;
-			// 	});
-			// 	self.data = mappedList;
-			// 	self.classList(responseData);
-			// });
+			self.data = mappedList;
+			self.classList(mappedList);
 		};
 
 		self.search = function(searchTerm) {
@@ -84,15 +54,12 @@ define(function(require) {
 		};
 
 		self.selectClass = function(item, event) {
-			return _i.$.getJSON('app/ClassList.js', function(result) {
-				var foobar = result;
-			});
-			// var $element = _i.$(event.target);
-			// if (item.id === self.selectedClassId()) {
-			// 	self.selectedClassId(0);
-			// } else {
-			// 	self.selectedClassId(item.id);
-			// }
+			var $element = _i.$(event.target);
+			if (item.id === self.selectedClassId()) {
+				self.selectedClassId(0);
+			} else {
+				self.selectedClassId(item.id);
+			}
 		};
 
 
