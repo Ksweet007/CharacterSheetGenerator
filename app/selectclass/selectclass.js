@@ -2,9 +2,9 @@ define(function(require) {
 	var _i = {
 		ko: require('knockout'),
 		$: require('jquery'),
-		search: require('services/search'),
-		list: require('services/listmanager'),
-		classRepo: require('services/classDB')
+		search: require('_custom/services/search'),
+		list: require('_custom/services/listmanager'),
+		charajax: require('_custom/services/WebAPI')
 	};
 
 	return function() {
@@ -33,7 +33,7 @@ define(function(require) {
 		});
 
 		self.activate = function() {
-			_i.$.getJSON("app/Models/FinishedCLassList.js", function(data) {
+		_i.charajax.getJSON('classes/_all_docs',function(data){
 				var mappedList = _i.$.map(data, function(obj, index) {
 					obj.id = index + 1;
 					return obj;

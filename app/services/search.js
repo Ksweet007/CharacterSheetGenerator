@@ -19,7 +19,8 @@ define(function(require) {
 		  maxPatternLength: 32,
 		  minMatchCharLength: 1,
 		  keys: [
-		    "name"
+		    "name",
+			"powersource"
 		]
 		};
 

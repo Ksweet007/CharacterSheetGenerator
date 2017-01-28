@@ -11,7 +11,7 @@ requirejs.config({
       }
 });
 
-define(['durandal/system', 'durandal/app', 'durandal/viewLocator','knockout','all'],  function (system, app, viewLocator,ko,all) {
+define(['durandal/system', 'durandal/app', 'durandal/viewLocator','knockout','_custom/all'],  function (system, app, viewLocator,ko,all) {
     //>>excludeStart("build", true);
     system.debug(true);
     //>>excludeEnd("build");
@@ -22,7 +22,7 @@ define(['durandal/system', 'durandal/app', 'durandal/viewLocator','knockout','al
 		window.define = define;
 
 		ko.punches.enableAll();
-		
+
     app.title = 'Character Builder';
 
     app.configurePlugins({
