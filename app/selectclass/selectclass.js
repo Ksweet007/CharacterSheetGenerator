@@ -33,7 +33,7 @@ define(function(require) {
 		});
 
 		self.activate = function() {
-		_i.charajax.getJSON('classes/_all_docs',function(data){
+		_i.charajax.getJSON('/classes/_all_docs',function(data){
 				var mappedList = _i.$.map(data, function(obj, index) {
 					obj.id = index + 1;
 					return obj;

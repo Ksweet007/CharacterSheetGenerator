@@ -1,21 +1,11 @@
-define('services/WebAPI', function() {
+define(function(require) {
 	var _i = {
 		$: require('jquery'),
 		deferred: require('_custom/deferred')
 	};
 
-	function ApiCls() {};
-
-	ApiCls.prototype.ajax = function() {
-		config = _i.$.extend({
-            url: 'https://ksweet007.cloudant.com/' + config.url,
-            headers:{
-                Authorization: 'Basic' + btoa('ksweet007' + ":" + '@Manda!!o5'),
-                contentType: 'application/json',
-            },
-			dataType: 'application/json',
-		}, config);
-
+	function ApiCls() {}
+	ApiCls.prototype.ajax = function(config) {
 		var dfd = _i.$.Deferred();
         var promise = _i.$.ajax(config);
         promise.done(function () {
@@ -32,10 +22,15 @@ define('services/WebAPI', function() {
         // Key acts as the unique identifier in this table so classname, or powersource for class
         //When saving someones character the key needs to be their username, maybe a GUID?
 		//var stringifiedObj = JSON.stringify(datatosend);
-
-		return this.ajax({
-			url: 'https://ksweet007.cloudant.com/classes',
-			data: JSON.stringify(data)
+		//option query string values include_docs
+		return _i.$.ajax({
+			type: 'GET',
+			url: 'https://ksweet007.cloudant.com'+url,
+			headers: {
+				"Authorization": "Basic " + btoa('ksweet007' + ":" + '@Manda!!o5'),
+				"Content-Type": "application/json"
+			},
+			dataType: 'application/json'
 		});
 	};
 
@@ -92,13 +87,6 @@ define('services/WebAPI', function() {
 		}).done(function(data) {
 			console.log(data);
 		});
-
-        return new ApiCls();
 	};
-
-
-
-
-
-
+	return new ApiCls();
 });
