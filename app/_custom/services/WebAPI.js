@@ -9,13 +9,15 @@ define(function(require) {
 		var dfd = _i.$.Deferred();
         var promise = _i.$.ajax(config);
         promise.done(function () {
-                    dfd.resolve.apply(this, arguments);
+        	dfd.resolve.apply(this, arguments);
         }).fail(function (jqXHR, textStatus, errorThrown) {
             dfd.reject.apply(this, arguments);
         });
+
+		return dfd.promise();
 	};
 
-	ApiCls.prototype.getJSON = function(url, data) {
+	ApiCls.prototype.get = function(url, data) {
         //  https://$USERNAME.cloudant.com/$DATABASE/_all_docs
         //  /_all_docs?keys=["somekey","someotherkey"]
         // Need to give Creates an ID
@@ -23,14 +25,15 @@ define(function(require) {
         //When saving someones character the key needs to be their username, maybe a GUID?
 		//var stringifiedObj = JSON.stringify(datatosend);
 		//option query string values include_docs
-		return _i.$.ajax({
+		return this.ajax({
 			type: 'GET',
-			url: 'https://ksweet007.cloudant.com'+url,
+			url: 'https://ksweet007.cloudant.com/'+url,
 			headers: {
 				"Authorization": "Basic " + btoa('ksweet007' + ":" + '@Manda!!o5'),
 				"Content-Type": "application/json"
 			},
-			dataType: 'application/json'
+			dataType: 'json',
+			data: data
 		});
 	};
 

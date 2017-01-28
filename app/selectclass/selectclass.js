@@ -33,13 +33,17 @@ define(function(require) {
 		});
 
 		self.activate = function() {
-		_i.charajax.getJSON('/classes/_all_docs',function(data){
-				var mappedList = _i.$.map(data, function(obj, index) {
-					obj.id = index + 1;
-					return obj;
+			var responseData = [];
+			_i.charajax.get('classes/_all_docs?include_docs=true').done(function(data) {
+				var mappedList = _i.$.map(data.rows, function(obj, index) {
+					obj.doc.Class
+					obj.doc.Class.id = index + 1;
+					obj.doc.id = index + 1;
+					responseData.push(obj.doc.Class);
+					return obj.doc.Class;
 				});
 				self.data = mappedList;
-				self.classList(data);
+				self.classList(responseData);
 			});
 		};
 
