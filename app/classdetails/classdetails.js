@@ -21,6 +21,8 @@ define(function(require) {
 		self.savingThrows = _i.ko.observableArray([]);
 		self.skills = _i.ko.observableArray([]);
 		self.features = _i.ko.observableArray([]);
+		self.equipment = _i.ko.observableArray([]);
+
 
         self.activate = function(classname){
             return _i.charajax.get('classes/' + classname).done(function(response){
@@ -38,21 +40,7 @@ define(function(require) {
 				self.savingThrows(self.proficiencies().saves);
 				self.skills(self.proficiencies().skills);
 				self.features(data.features);
-
-				// for(var i = 1; i <= 20; i++){
-				// 	var levelDetail = {};
-				// 	levelDetail.level = i;
-				// 	levelDetail.profbonus = self.proficiencies().bonus[i-1];
-				// 	var featureList = [];
-				// 	for(var y = 1; y <= self.features().length; y++){
-				// 		if(self.features()[y-1].levelgained === i){
-				// 			var copy = self.features()[y-1];
-				// 			featureList.push(copy);
-				// 		}
-				// 	}
-				// 	levelDetail.features = buildList(featureList);
-				// 	self.levelDetail.push(levelDetail);
-				// };
+				self.equipment(data.equipment);
 
 				self.armorList = _i.ko.computed(function(){
 					return buildList(self.armor());
@@ -70,6 +58,19 @@ define(function(require) {
 					return buildList(self.savingThrows());
 				});
 
+				self.equipmentList = _i.ko.computed(function(){
+					return buildListString(self.equipment());
+				});
+
+				self.featureList = _i.ko.computed(function(){
+					var mappedList = _i.$.map(self.features(),function(obj,index){
+						var item = obj;
+						item.id = "collapse" + index + 1;
+
+						return item;
+					});
+				});
+
             });
         }
 
@@ -84,6 +85,19 @@ define(function(require) {
 			   }
 			   else{
 				   result = result + ', ' + item.name;
+			   }
+		});
+		return result;
+	};
+
+	function buildListString(listitem){
+		var result = "";
+		_i.ko.utils.arrayForEach(listitem,function(item){
+			if (!result){
+				   result = item;
+			   }
+			   else{
+				   result = result + ', ' + item;
 			   }
 		});
 		return result;
