@@ -1,15 +1,3 @@
-html,body,.container, #applicationHost, .durandal-wrapper{
-  height: 100% !important;
-}
-.maxHeight{
-  height: 100% !important;
-}
-.jumbotron{
-  height: 100% !important;
-  padding-bottom: 0 !important;
-  margin-bottom: 0 !important;
-}
-
 .classSelect {
     color: #fff;
     background-color: #d9534f;
@@ -41,8 +29,8 @@ html,body,.container, #applicationHost, .durandal-wrapper{
 
 button.list-group-item:hover{
   background-color: #222 !important;
-  border-color: #080808 !important;
-  color: grey !important;
+  border-color: #23527c !important;
+  color: #23527c !important;
 }
 
 .selectionTitlebar {
@@ -51,7 +39,81 @@ button.list-group-item:hover{
   color: grey !important;
 }
 .list-group{
-	margin:0 !important;
-	padding:0px !important;
+	margin: 1px !important;
+	padding:1px !important;
 	list-style: none;
+}
+.list-group:hover{
+
+}
+.list-group-item{
+    background-color: rgba(34, 34, 34, 0.55) !important;
+    border-color: #222 !important;
+    color: #808080 !important;
+}
+.list-group-item:hover{
+    border-color:#23527c !important;
+}
+.list-group a, .list-group a:hover{
+    text-decoration: none;
+}
+
+.page-header{
+    border-bottom: none !important;
+}
+
+.containerFix{
+    position:absolute;
+    left: 0;
+    right: 0;
+    top: 150px;
+    overflow-x: hidden;
+    overflow-y: auto
+}
+
+/* Large desktops and laptops */
+@media (min-width: 1200px) {
+    .progress-header{
+        width:1500px;
+    }
+}
+
+/* Landscape tablets and medium desktops */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .progress-header{
+        width:1150px;
+    }
+}
+
+/* Portrait tablets and small desktops */
+@media (min-width: 768px) and (max-width: 991px) {
+    .progress-header{
+        width:800px;
+    }
+}
+
+/* Landscape phones and portrait tablets */
+@media (max-width: 767px) {
+    .progress-header{
+        width:750px;
+    }
+}
+
+/* Portrait phones and smaller */
+@media (max-width: 480px) {
+    .progress-header{
+        width:450px;
+    }
+}
+
+.progress-header{
+    left: 0;
+    right: 0;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    position: fixed;
+    z-index: 9999;
+    background-color: rgba(133, 133, 133, 1);
 }

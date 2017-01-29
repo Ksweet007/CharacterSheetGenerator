@@ -2,8 +2,8 @@ define(function(require) {
 	var _i = {
 		ko: require('knockout'),
 		$: require('jquery'),
-		search: require('services/search'),
-		list: require('services/listmanager')
+		search: require('_custom/services/search'),
+		list: require('_custom/services/listmanager')
 	};
 
 	return function() {

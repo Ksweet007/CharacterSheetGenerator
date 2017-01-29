@@ -1,15 +1,17 @@
-<div class="jumbotron">
-	<div class="container-fluid bg-3 text-center col-md-4" style="max-height:100%;">
-
+<div class="container">
+	<div class="page-header">
 		<h2 data-bind="text:displayName"></h2>
 
-		<ul data-bind="foreach: {data: classListToBind, afterAdd:classFadeIn, beforeRemove: classFadeOut }" class="list-group">
-			<li class="list-group">
-				<!-- <a class="list-group-item list-group-item-action" data-bind="text:name, css:{selectionTitlebar: $data.id === $parent.selectedClassId()}, click: $parent.selectClass"></a> -->
-				<a href="#race"><button type="button" class="list-group-item list-group-item-action" data-bind="text:name, css:{selectionTitlebar: $data.id === $parent.selectedClassId()}, click: $parent.selectClass"></button></a>
-
-			</li>
-		</ul>
-
+		<div class="progress">
+			<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">
+				40% Complete (success)
+			</div>
+		</div>
 	</div>
+
+	<ul data-bind="foreach: {data: classListToBind, afterAdd:classFadeIn, beforeRemove: classFadeOut }" class="list-group">
+		<li class="list-group">
+			<a href="#" data-bind="attr:{href: '#classdetails/'+id}"><button type="button" class="list-group-item list-group-item-action" data-bind="text:name, css:{selectionTitlebar: $data.id === $parent.selectedClassId()}, click: $parent.selectClass"></button></a>
+		</li>
+	</ul>
 </div>

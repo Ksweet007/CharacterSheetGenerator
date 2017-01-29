@@ -17,7 +17,8 @@
         activate: function () {
             router.map([
                 { route: '', title:'Class List', moduleId: 'selectclass/selectclass', nav: true },
-				{ route: 'race', title: 'Race List', moduleId: 'selectrace/selectrace', nav: true }
+				{ route: 'SelectRace', title: 'Race List', moduleId: 'selectrace/selectrace', nav: true },
+                { route: 'classdetails/:id', title: 'Class Details', moduleId: 'classdetails/classdetails', hash:'#classdetails', nav: false }
 
             ]).buildNavigationModel();
 

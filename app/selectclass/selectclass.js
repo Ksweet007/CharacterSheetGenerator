@@ -4,8 +4,7 @@ define(function(require) {
 		$: require('jquery'),
 		search: require('_custom/services/search'),
 		list: require('_custom/services/listmanager'),
-		charajax: require('_custom/services/WebAPI'),
-		deferred: require('_custom/deferred')
+		charajax: require('_custom/services/WebAPI')
 	};
 
 	return function() {
@@ -63,9 +62,9 @@ define(function(require) {
 				self.selectedClassId(0);
 			} else {
 				self.selectedClassId(item.id);
+				onclick= location.href='#classdetails/' + item.id;
 			}
 		};
-
 
 	};
 });

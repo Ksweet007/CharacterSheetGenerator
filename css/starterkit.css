@@ -15,6 +15,7 @@
     -webkit-text-shadow: rgba(0, 0, 0, 0.5) 0 0 15px;
     text-shadow: rgba(0, 0, 0, 0.5) 0 0 15px;
     text-transform: uppercase;
+    background-color: rgba(128, 128, 128, 0.96);
 }
 
 .splash .fa-spinner {
@@ -24,16 +25,17 @@
     margin-top: 50px;
 }
 
-/*.page-host {
+.page-host {
     position: absolute;
     left: 0;
     right: 0;
-    top: 50px;
+    top: 51px;
     bottom: 0;
     overflow-x: hidden;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
-}*/
+    background-color: rgba(128, 128, 128, 0.96);
+}
 
 .container {
   position: relative;
