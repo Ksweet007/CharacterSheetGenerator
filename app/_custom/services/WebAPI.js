@@ -18,13 +18,8 @@ define(function(require) {
 	};
 
 	ApiCls.prototype.get = function(url, data) {
-        //  https://$USERNAME.cloudant.com/$DATABASE/_all_docs
+		//https://docs.cloudant.com/document.html https://docs.cloudant.com/database.html#get-documents
         //  /_all_docs?keys=["somekey","someotherkey"]
-        // Need to give Creates an ID
-        // Key acts as the unique identifier in this table so classname, or powersource for class
-        //When saving someones character the key needs to be their username, maybe a GUID?
-		//var stringifiedObj = JSON.stringify(datatosend);
-		//option query string values include_docs
 		return this.ajax({
 			type: 'GET',
 			url: 'https://ksweet007.cloudant.com/'+url,

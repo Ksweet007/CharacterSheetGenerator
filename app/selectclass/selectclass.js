@@ -5,7 +5,7 @@ define(function(require) {
 		search: require('_custom/services/search'),
 		list: require('_custom/services/listmanager'),
 		charajax: require('_custom/services/WebAPI'),
-		classListing: require('Models/ClassObjectListing')
+		deferred: require('_custom/deferred')
 	};
 
 	return function() {
@@ -34,14 +34,18 @@ define(function(require) {
 		});
 
 		self.activate = function() {
-			var classListing = _i.classListing;
-			var mappedList = _i.$.map(classListing,function(obj,index){
-				var item = obj.Class;
-				item.id = obj._id;
-				return item;
+		 	return _i.charajax.get('classes/_all_docs?include_docs=true').done(function(response){
+				var mappedList = _i.$.map(response.rows,function(obj,index){
+					var item = obj.doc.Class;
+					item.id = obj.id;
+					item.key = obj.key
+
+					return item;
+				});
+
+				self.data = mappedList;
+				self.classList(mappedList);
 			});
-			self.data = mappedList;
-			self.classList(mappedList);
 		};
 
 		self.search = function(searchTerm) {
