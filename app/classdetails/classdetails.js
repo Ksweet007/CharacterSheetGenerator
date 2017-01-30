@@ -24,7 +24,6 @@ define(function(require) {
 		self.equipment = _i.ko.observableArray([]);
 		self.classDetails = _i.ko.observableArray([]);
 
-
     	self.activate = function(classname){
             return _i.charajax.getJSON('classes/' + classname).done(function(response){
                 var classDetails = response.Class;

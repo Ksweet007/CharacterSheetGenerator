@@ -1,5 +1,6 @@
-html, body, #applicationHost {
-		font-family: 'Jim Nightshade', cursive;
+body{
+    font-family: 'Eagle Lake', 'MedievalSharp','Jim Nightshade','IM Fell English SC','Metamorphous','Milonga','Pirata One', cursive !important;
+    background-color: rgba(128, 128, 128, 0.96) !important;
 }
 
 html {
@@ -205,14 +206,15 @@ button.list-group-item:hover{
 	right: 0px;
 	top: 50px;
 	bottom: 0px;
-	overflow-x: hidden;
-	overflow-y: auto;
-  background-color: rgba(128, 128, 128, 0.96);
+	/*overflow-x: hidden;
+	overflow-y: auto;*/
+    z-index: 1;
+    /*background-color: rgba(128, 128, 128, 0.96);*/
 }
 
 .pageContent{
-		top: 0;
-    margin: 0 auto 2px;
+	top: 0;
+    /*margin: 0 auto 2px;*/
     position: absolute;
     z-index: 4000;
     width: 100%;
@@ -220,6 +222,7 @@ button.list-group-item:hover{
     max-width: 1200px;
     left: 0;
     right: 0;
+    height:100%;
 }
 
 .scrollableWrapper{
