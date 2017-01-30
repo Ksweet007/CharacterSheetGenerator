@@ -222,11 +222,27 @@ button.list-group-item:hover{
     right: 0;
 }
 
-.pageWrapper{
+.scrollableWrapper{
+	/*position:absolute;*/
+}
+
+/*.pageWrapper{
 	left: 0;
 	right: 0;
 	position:absolute;
 	top:93px;
+	overflow-x: hidden;
+	overflow-y: auto;
+}*/
+
+.pageWrapper{
+	position: fixed;
+  top: 93px;
+  overflow-x: hidden;
+  overflow-y: auto;
+	width: 100%;
+	min-width: 950px;
+	max-width: 1200px;
 }
 
 .progress{
