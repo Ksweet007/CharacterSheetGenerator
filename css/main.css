@@ -107,13 +107,29 @@ button.list-group-item:hover{
 }
 
 .progress-header{
-    left: 0;
-    right: 0;
-    padding-right: 15px;
-    padding-left: 15px;
-    margin-right: auto;
-    margin-left: auto;
-    position: fixed;
-    z-index: 9999;
-    background-color: rgba(133, 133, 133, 1);
+	top: 51px;
+	margin: 0 auto 2px;
+	position: fixed;
+	z-index: 4000;
+	width: 100%;
+	min-width: 950px;
+	max-width: 1200px;
+	left: 0;
+	right: 0;
+  background-color: rgba(133, 133, 133, 1);
 }
+
+/*.progress-header{
+	padding: 20px 0 5px;
+position: fixed;
+top: 81px;
+height: 57px;
+z-index: 2000;
+left: 0;
+right: 0;
+margin: 0 auto;
+width: 100%;
+min-width: 950px;
+max-width: 1200px;
+background-color: #fff;
+}*/
