@@ -25,7 +25,17 @@
     margin-top: 50px;
 }
 
-
+/*.page-host {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 51px;
+    bottom: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    background-color: rgba(128, 128, 128, 0.96);
+}*/
 
 .container {
   position: relative;

@@ -1,12 +1,7 @@
-<!-- <div class="progress-header">
-	<div class="progress">
-		<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">
-			40% Complete (success)
-		</div>
-	</div>
-</div> -->
 
-<div class="container containerFix" id="parentWrapper">
+
+
+<section class="pageContent">
 	<div class="progress-header">
 		<div class="progress">
 			<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">
@@ -14,8 +9,10 @@
 			</div>
 		</div>
 	</div>
-
-	<div id="childWrapper">
+<!-- <div class="scrollerfade" style="display: none;"></div> -->
+	<div class="pageWrapper">
+		<div class="scrollableWrapper">
+		<h2 data-bind="text:displayName"></h2>
 		<div class="panel-group" id="accordion">
 			<div class="panel panel-default">
 				<div class="panel-heading">
@@ -115,21 +112,21 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-				<a data-toggle="collapse" data-parent="#accordion" href="#collapse6">Features</a>
-			  </h4>
+	        <a data-toggle="collapse" data-parent="#accordion" href="#collapse6">Features</a>
+	      </h4>
 				</div>
-				<div id="collapse6" class="panel-collapse collapse collapseFix">
+				<div id="collapse6" class="panel-collapse collapse">
 					<div class="panel-group" id="accordion2">
 						<!-- ko foreach:features -->
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h4 class="panel-title">
-							<a data-toggle="collapse" data-parent="#accordion2" data-bind="attr:{href:'#'+id}, text:name"></a>
-						  </h4>
+						<a data-toggle="collapse" data-parent="#accordion2" data-bind="attr:{href:'#'+id}, text:name"></a>
+				      </h4>
 							</div>
 							<div data-bind="attr:{id:id}" class="panel-collapse collapse">
 								<div class="panel-body">
-									<div><span data-bind="html:description"></span></div>
+									<div><span data-bind="text:description"></span></div>
 								</div>
 							</div>
 						</div>
@@ -138,8 +135,7 @@
 				</div>
 			</div>
 		</div>
+
+		</div>
 	</div>
-
-
-
-</div>
+</section>

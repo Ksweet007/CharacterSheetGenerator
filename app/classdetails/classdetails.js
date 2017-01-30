@@ -4,12 +4,12 @@ define(function(require) {
 		$: require('jquery'),
 		search: require('_custom/services/search'),
 		list: require('_custom/services/listmanager'),
-        charajax: require('_custom/services/WebAPI')
+		charajax: require('_custom/services/WebAPI')
 	};
 
 	return function() {
 		var self = this;
-        self.data = null;
+		self.data = null;
 		self.displayName = _i.ko.observable('');
 		self.levelDetail = _i.ko.observableArray([]);
 		self.primaryAbility = _i.ko.observable('');
@@ -24,7 +24,8 @@ define(function(require) {
 		self.equipment = _i.ko.observableArray([]);
 		self.classDetails = _i.ko.observableArray([]);
 
-        self.activate = function(classname){
+
+    	self.activate = function(classname){
             return _i.charajax.getJSON('classes/' + classname).done(function(response){
                 var classDetails = response.Class;
 				classDetails.id = classname;
@@ -43,28 +44,28 @@ define(function(require) {
 				self.features(data.features);
 				self.equipment(data.equipment);
 
-				self.armorList = _i.ko.computed(function(){
+				self.armorList = _i.ko.computed(function() {
 					return buildList(self.armor());
 				});
 
-				self.weaponList = _i.ko.computed(function(){
+				self.weaponList = _i.ko.computed(function() {
 					return buildList(self.weapons());
 				});
 
-				self.toolList = _i.ko.computed(function(){
+				self.toolList = _i.ko.computed(function() {
 					return buildList(self.tools());
 				});
 
-				self.savingthrowList = _i.ko.computed(function(){
+				self.savingthrowList = _i.ko.computed(function() {
 					return buildList(self.savingThrows());
 				});
 
-				self.equipmentList = _i.ko.computed(function(){
+				self.equipmentList = _i.ko.computed(function() {
 					return buildListString(self.equipment());
 				});
 
-				self.featureList = _i.ko.computed(function(){
-					var mappedList = _i.$.map(self.features(),function(obj,index){
+				self.featureList = _i.ko.computed(function() {
+					var mappedList = _i.$.map(self.features(), function(obj, index) {
 						var item = obj;
 						item.id = "collapse" + index + 1;
 						item.description = obj.description.replace(/\\n/g,"\n");
@@ -82,28 +83,26 @@ define(function(require) {
 
 	};
 
-	function buildList(listitem){
+	function buildList(listitem) {
 		var result = "";
-		_i.ko.utils.arrayForEach(listitem,function(item){
-			if (!result){
-				   result = item.name;
-			   }
-			   else{
-				   result = result + ', ' + item.name;
-			   }
+		_i.ko.utils.arrayForEach(listitem, function(item) {
+			if (!result) {
+				result = item.name;
+			} else {
+				result = result + ', ' + item.name;
+			}
 		});
 		return result;
 	};
 
-	function buildListString(listitem){
+	function buildListString(listitem) {
 		var result = "";
-		_i.ko.utils.arrayForEach(listitem,function(item){
-			if (!result){
-				   result = item;
-			   }
-			   else{
-				   result = result + ', ' + item;
-			   }
+		_i.ko.utils.arrayForEach(listitem, function(item) {
+			if (!result) {
+				result = item;
+			} else {
+				result = result + ', ' + item;
+			}
 		});
 		return result;
 	};
