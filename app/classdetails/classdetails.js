@@ -22,13 +22,14 @@ define(function(require) {
 		self.skills = _i.ko.observableArray([]);
 		self.features = _i.ko.observableArray([]);
 		self.equipment = _i.ko.observableArray([]);
-
+		self.classDetails = _i.ko.observableArray([]);
 
         self.activate = function(classname){
-            return _i.charajax.get('classes/' + classname).done(function(response){
+            return _i.charajax.getJSON('classes/' + classname).done(function(response){
                 var classDetails = response.Class;
 				classDetails.id = classname;
 				var data = classDetails;
+				classDetails.features[0].description = classDetails.features[0].description.replace(/\\n/g,"\n");
 				self.data = classDetails;
 				self.displayName(classname);
 				self.primaryAbility(data.primaryability);
@@ -66,9 +67,13 @@ define(function(require) {
 					var mappedList = _i.$.map(self.features(),function(obj,index){
 						var item = obj;
 						item.id = "collapse" + index + 1;
-
+						item.description = obj.description.replace(/\\n/g,"\n");
 						return item;
 					});
+				});
+
+				_i.charajax.getJSON('classdetailpanel/' + classname).done(function(data){
+					self.classDetails(data.levels);
 				});
 
             });

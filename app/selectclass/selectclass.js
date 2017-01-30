@@ -14,6 +14,7 @@ define(function(require) {
 		self.classList = _i.ko.observableArray([]);
 		self.selectedClassId = _i.ko.observable(0);
 		self.displayName = 'Select Class';
+		self.classDetails = _i.ko.observable();
 
 		self.classFadeIn = function(elem) {
 			if (elem.nodeType === 1) _i.$(elem).hide().slideDown()
