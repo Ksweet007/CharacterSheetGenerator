@@ -116,7 +116,8 @@ button.list-group-item:hover{
 	max-width: 1200px;
 	left: 0;
 	right: 0;
-  background-color: rgba(133, 133, 133, 1);
+	background-color: #fff;
+  /*background-color: rgba(133, 133, 133, 1);*/
 }
 
 /*.progress-header{

@@ -1,5 +1,6 @@
 html, body, #applicationHost {
     height: 100%;
+		font-family: 'Jim Nightshade', cursive;
 }
 
 html {
@@ -28,6 +29,10 @@ html {
     min-width: 950px;
     margin: 0 auto;
     max-width: 1200px;
+}
+
+#container span{
+	white-space: pre-line;
 }
 
 
