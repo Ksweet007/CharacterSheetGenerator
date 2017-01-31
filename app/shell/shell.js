@@ -1,6 +1,21 @@
 ﻿define(['plugins/router', 'durandal/app'], function (router, app,vemod) {
     var self = this;
     self.searchTerm = ko.observable();
+    self.classDetailsComplete = ko.observable();
+    self.classSelected = ko.observable();
+    self.raceSelected = ko.observable();
+
+    app.on('view:done').then(function(viewname){
+        if(viewname === 'Race List'){
+            self.classDetailsComplete(true);
+        }
+        else if (viewname === 'Class List') {
+            self.classDetailsComplete(true);
+        }
+        else if (viewname === 'Details') {
+            self.classDetailsComplete(true);
+        }
+    });
 
     return {
         router: router,
@@ -14,15 +29,19 @@
             }
 
         },
-        activate: function () {
+        activate: function (foo) {
             router.map([
-                { route: '', title:'Class List', moduleId: 'selectclass/selectclass', nav: true },
-				{ route: 'SelectRace', title: 'Race List', moduleId: 'selectrace/selectrace', nav: true },
-                { route: 'classdetails/:id', title: 'Class Details', moduleId: 'classdetails/classdetails', hash:'#classdetails', nav: false }
+                { route: '', title:'Class List', moduleId: 'selectclass/selectclass', nav: true, isComplete:self.classSelected },
+				{ route: 'SelectRace', title: 'Race List', moduleId: 'selectrace/selectrace', nav: true, isComplete:self.raceSelected },
+                { route: 'classdetails/:id', title: 'Class Details', moduleId: 'classdetails/classdetails', hash:'#classdetails', nav: false, isComplete:self.classDetailsComplete }
 
             ]).buildNavigationModel();
 
             return router.activate();
+        },
+        canDeactivate: function (arg) {
+            var foo = arg;
+            return app.showMessage('Are you sure you want to leave this page?', 'Navigate', ['Yes', 'No']);
         }
     };
 });

@@ -4,7 +4,8 @@ define(function(require) {
 		$: require('jquery'),
 		search: require('_custom/services/search'),
 		list: require('_custom/services/listmanager'),
-		charajax: require('_custom/services/WebAPI')
+		charajax: require('_custom/services/WebAPI'),
+		app: require('durandal/app')
 	};
 
 	return function() {
@@ -23,6 +24,17 @@ define(function(require) {
 		self.features = _i.ko.observableArray([]);
 		self.equipment = _i.ko.observableArray([]);
 		self.classDetails = _i.ko.observableArray([]);
+
+		self.deactivate = function(){
+			return _i.app.trigger('view:done','Details');
+		};
+
+		self.canDeactivate = function(){
+			_i.app.trigger('view:done','Details');
+				return true;
+
+			
+		};
 
     	self.activate = function(classname){
             return _i.charajax.getJSON('classes/' + classname).done(function(response){

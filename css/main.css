@@ -171,18 +171,17 @@ button.list-group-item:hover{
         width:450px;
     }
 }
+.nav > li{
+    margin-left: 2px;
+    margin-right:2px;
+}
 .progress-header{
-	/*margin: 0 auto 2px;*/
     bottom:0;
 	position: absolute;
 	z-index: 4000;
-	/*width: 100%;*/
-	/*min-width: 950px;*/
-	/*max-width: 1200px;*/
 	left: 0;
 	right: 0;
 	background-color: #fff;
-  /*background-color: rgba(133, 133, 133, 1);*/
 }
 
 .scrollerfade{
@@ -225,19 +224,6 @@ button.list-group-item:hover{
     right: 0;
     height:100%;
 }
-
-.scrollableWrapper{
-	/*position:absolute;*/
-}
-
-/*.pageWrapper{
-	left: 0;
-	right: 0;
-	position:absolute;
-	top:93px;
-	overflow-x: hidden;
-	overflow-y: auto;
-}*/
 
 .pageWrapper{
 	position: fixed;

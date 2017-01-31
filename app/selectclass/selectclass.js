@@ -4,7 +4,8 @@ define(function(require) {
 		$: require('jquery'),
 		search: require('_custom/services/search'),
 		list: require('_custom/services/listmanager'),
-		charajax: require('_custom/services/WebAPI')
+		charajax: require('_custom/services/WebAPI'),
+		app: require('durandal/app')
 	};
 
 	return function() {
@@ -48,6 +49,11 @@ define(function(require) {
 			});
 		};
 
+		//self.candeactivate -- need to switch to candeactivate to see if they have populated the observable for whatever this class needs, then flip it to true
+		self.deactivate = function(){
+			//return _i.app.trigger('view:done','Class List');
+		};
+
 		self.search = function(searchTerm) {
 			if (!searchTerm || searchTerm === "") {
 				self.classList(self.data);
@@ -55,6 +61,11 @@ define(function(require) {
 				var searchResults = _i.search.searchClassname(self.data, searchTerm);
 				self.classList(searchResults);
 			}
+		};
+
+		self.canDeactivate = function(){
+			_i.app.trigger('view:done','Class List');
+			return true;
 		};
 
 		self.selectClass = function(item, event) {
