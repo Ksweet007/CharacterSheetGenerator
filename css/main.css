@@ -176,6 +176,10 @@ button.list-group-item:hover{
     margin-right:2px;
 }
 
+.progressNav{
+	position:fixed !important;
+}
+
 .progress-header{
   bottom:0;
 	position: absolute;

@@ -1,9 +1,9 @@
 ﻿define(['plugins/router', 'durandal/app'], function (router, app,vemod) {
     var self = this;
     self.searchTerm = ko.observable();
-    self.classDetailsComplete = ko.observable(false);
-    self.classSelected = ko.observable(false);
-    self.raceSelected = ko.observable(false);
+    self.classDetailsComplete = ko.observable(true);
+    self.classSelected = ko.observable(true);
+    self.raceSelected = ko.observable(true);
 
     app.on('view:done').then(function(viewname){
         if(viewname === 'Race List'){
@@ -16,10 +16,6 @@
             self.classDetailsComplete(true);
         }
     });
-
-		// router.on('router:navigation:composition-complete',			function testo(args, moreargs,evenmore){
-		// 			var foo = 'bar';
-		// 		});
 
     return {
         router: router,
@@ -35,9 +31,9 @@
         },
         activate: function (foo) {
             router.map([
-                { route: '', title:'Class List', moduleId: 'selectclass/selectclass', nav: true, isComplete:self.classSelected },
-								{ route: 'SelectRace', title: 'Race List', moduleId: 'selectrace/selectrace', nav: true, isComplete:self.raceSelected },
-                { route: 'classdetails/:id', title: 'Class Details', moduleId: 'classdetails/classdetails', hash:'#classdetails', nav: false, isComplete:self.classDetailsComplete }
+                { route: '', title:'Class List', moduleId: 'selectclass/selectclass', nav: true, isComplete:self.classSelected,ident:"classlist" },
+								{ route: 'SelectRace', title: 'Race List', moduleId: 'selectrace/selectrace', nav: true, isComplete:self.raceSelected,ident:"selectrace" },
+                { route: 'classdetails/:id', title: 'Class Details', moduleId: 'classdetails/classdetails', hash:'#classdetails', nav: false, isComplete:self.classDetailsComplete,ident:"classdetails" }
 
             ]).buildNavigationModel();
 
