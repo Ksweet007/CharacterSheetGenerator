@@ -33,7 +33,7 @@ define(function(require) {
 			_i.app.trigger('view:done','Details');
 				return true;
 
-			
+
 		};
 
     	self.activate = function(classname){

@@ -10,6 +10,7 @@ define(function(require) {
 
 	return function() {
 		var self = this;
+		self.isComplete = _i.ko.observable(false);
 		self.data = null;
 		self.initialClassList = _i.ko.observableArray([]);
 		self.classList = _i.ko.observableArray([]);
@@ -50,9 +51,9 @@ define(function(require) {
 		};
 
 		//self.candeactivate -- need to switch to candeactivate to see if they have populated the observable for whatever this class needs, then flip it to true
-		self.deactivate = function(){
-			//return _i.app.trigger('view:done','Class List');
-		};
+		// self.deactivate = function(){
+		// 	return _i.app.trigger('view:done','Class List');
+		// };
 
 		self.search = function(searchTerm) {
 			if (!searchTerm || searchTerm === "") {
@@ -69,6 +70,8 @@ define(function(require) {
 		};
 
 		self.selectClass = function(item, event) {
+			self.isComplete(true);
+			_i.app.trigger('view:done','Class List');
 			var $element = _i.$(event.target);
 			if (item.id === self.selectedClassId()) {
 				self.selectedClassId(0);
