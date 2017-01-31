@@ -6,5 +6,6 @@ define(function(require) {
 	require('./cls');
 
 	require('./bindinghandlers/columnbuilder');
+	require('./bindinghandlers/LockScroll');
 
 });
