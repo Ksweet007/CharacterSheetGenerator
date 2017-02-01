@@ -32,8 +32,6 @@ define(function(require) {
 		self.canDeactivate = function() {
 			_i.app.trigger('view:done', 'Details');
 			return true;
-
-
 		};
 
 		self.activate = function(classname) {
