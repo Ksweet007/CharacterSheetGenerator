@@ -18,7 +18,7 @@ define(function(require) {
 					if (result.hasOwnProperty(key)) {
 						console.log(result[key]);
 						//console.log(key + " -> " + result[key]);
-						//turn it to JSON?
+						
 						saveText(JSON.stringify(result[key]),key);
 					}
 				}

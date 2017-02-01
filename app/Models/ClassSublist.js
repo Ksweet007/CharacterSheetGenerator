@@ -1,4 +1,4 @@
-var ClassSubList = {
+{
 	"battlerager" : {
 		regExpSearch : /(battlerager|kuldjargh)/i,
 		subname : "Path of the Battlerager",
