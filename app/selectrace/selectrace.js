@@ -11,7 +11,7 @@ define(function(require) {
 		self.displayName = 'Select Race';
 
 		self.activate = function() {
-			return _i.$.getJSON('app/selectrace/RaceList.js', function(result) {
+			return _i.$.getJSON('app/selectrace/subraces.js', function(result) {
 				var foo = result;
 
 				for (var key in result) {
@@ -25,9 +25,9 @@ define(function(require) {
 
 				function saveText(text, filename) {
 					var a = document.createElement('a');
-					//a.setAttribute('href', 'data:text/plain;charset=utf-u,' + encodeURIComponent(text));
-					//a.setAttribute('download', filename);
-					//a.click()
+					a.setAttribute('href', 'data:text/plain;charset=utf-u,' + encodeURIComponent(text));
+					a.setAttribute('download', filename);
+					a.click()
 				}
 
 
