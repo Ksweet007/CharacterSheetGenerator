@@ -223,15 +223,16 @@ ul .progress-header.active {
 }
 
 .pageContent{
-		top: 0;
-    position: absolute;
+	top: 0;
+    /*position: absolute;*/
     z-index: 4000;
-    width: 100%;
-    min-width: 950px;
-    max-width: 1200px;
-    left: 0;
-    right: 0;
-    height:100%;
+    /*width: 100%;*/
+    margin: 0 auto;
+    /*min-width: 950px;*/
+    /*max-width: 1200px;*/
+    /*left: 0;*/
+    /*right: 0;*/
+    /*height:100%;*/
 }
 
 .pageWrapper{
@@ -262,4 +263,7 @@ ul .progress-header.active {
 
 .navbar-form{
 	margin-right: 10px !important
+}
+.table>tbody>tr>td{
+    padding: 1px !important;
 }
