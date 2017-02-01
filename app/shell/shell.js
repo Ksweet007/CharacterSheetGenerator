@@ -1,9 +1,9 @@
 ﻿define(['plugins/router', 'durandal/app'], function (router, app,vemod) {
     var self = this;
     self.searchTerm = ko.observable();
-    self.classDetailsComplete = ko.observable(true);
-    self.classSelected = ko.observable(true);
-    self.raceSelected = ko.observable(true);
+    self.classDetailsComplete = ko.observable(false);
+    self.classSelected = ko.observable(false);
+    self.raceSelected = ko.observable(false);
 
     app.on('view:done').then(function(viewname){
         if(viewname === 'Race List'){

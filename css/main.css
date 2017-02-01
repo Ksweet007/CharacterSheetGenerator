@@ -181,7 +181,7 @@ button.list-group-item:hover{
 }
 
 .progress-header{
-  bottom:0;
+    bottom:0;
 	position: absolute;
 	z-index: 4000;
 	left: 0;
@@ -237,9 +237,9 @@ ul .progress-header.active {
 
 .pageWrapper{
 	position: fixed;
-  top: 93px;
-  overflow-x: hidden;
-  overflow-y: auto;
+    top: 93px;
+    overflow-x: hidden;
+    overflow-y: auto;
 	width: 100%;
 	min-width: 950px;
 	max-width: 1200px;
