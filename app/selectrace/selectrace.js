@@ -12,13 +12,11 @@ define(function(require) {
 		self.currentFileName = _i.ko.observable('');
 		self.displayName = 'Select Race';
 
-//https://www.html5rocks.com/en/tutorials/file/dndfiles/
-
 		self.activate = function() {
-			self.handleFileSelect = function(item, evt) {
-				_i.utils.readFiles(item,evt);
-			}
 
+		};
+		self.handleFileSelect = function(item, evt) {
+			_i.utils.readDocsToSingleFile(item,evt);
 		};
 
 
