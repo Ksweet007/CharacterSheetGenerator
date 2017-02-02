@@ -3,36 +3,24 @@ define(function(require) {
 		ko: require('knockout'),
 		$: require('jquery'),
 		search: require('_custom/services/search'),
-		list: require('_custom/services/listmanager')
+		list: require('_custom/services/listmanager'),
+		charajax: require('_custom/services/WebAPI'),
+		utils: require('_custom/services/utils')
 	};
-
 	return function() {
 		var self = this;
+		self.currentFileName = _i.ko.observable('');
 		self.displayName = 'Select Race';
 
+//https://www.html5rocks.com/en/tutorials/file/dndfiles/
+
 		self.activate = function() {
-			return _i.$.getJSON('app/selectrace/subraces.js', function(result) {
-				var foo = result;
+			self.handleFileSelect = function(item, evt) {
+				_i.utils.readFiles(item,evt);
+			}
 
-				for (var key in result) {
-					if (result.hasOwnProperty(key)) {
-						console.log(result[key]);
-						//console.log(key + " -> " + result[key]);
-						
-						saveText(JSON.stringify(result[key]),key);
-					}
-				}
-
-				function saveText(text, filename) {
-					var a = document.createElement('a');
-					a.setAttribute('href', 'data:text/plain;charset=utf-u,' + encodeURIComponent(text));
-					a.setAttribute('download', filename);
-					a.click()
-				}
+		};
 
 
-			});
-		}
-
-	};
+	}
 });

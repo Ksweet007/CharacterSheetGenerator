@@ -36,9 +36,9 @@ define(function(require) {
 		});
 
 		self.activate = function() {
-		 	return _i.charajax.get('classes/_all_docs?include_docs=true').done(function(response){
-				var mappedList = _i.$.map(response.rows,function(obj,index){
-					var item = obj.doc.Class;
+			return _i.charajax.get('classes/_all_docs?include_docs=true').done(function(response) {
+				var mappedList = _i.$.map(response.rows, function(obj, index) {
+					var item = obj.doc;
 					item.id = obj.id;
 					item.key = obj.key
 
@@ -50,11 +50,6 @@ define(function(require) {
 			});
 		};
 
-		//self.candeactivate -- need to switch to candeactivate to see if they have populated the observable for whatever this class needs, then flip it to true
-		// self.deactivate = function(){
-		// 	return _i.app.trigger('view:done','Class List');
-		// };
-
 		self.search = function(searchTerm) {
 			if (!searchTerm || searchTerm === "") {
 				self.classList(self.data);
@@ -64,20 +59,20 @@ define(function(require) {
 			}
 		};
 
-		self.canDeactivate = function(){
-			_i.app.trigger('view:done','Class List');
+		self.canDeactivate = function() {
+			_i.app.trigger('view:done', 'Class List');
 			return true;
 		};
 
 		self.selectClass = function(item, event) {
 			self.isComplete(true);
-			_i.app.trigger('view:done','Class List');
+			_i.app.trigger('view:done', 'Class List');
 			var $element = _i.$(event.target);
 			if (item.id === self.selectedClassId()) {
 				self.selectedClassId(0);
 			} else {
 				self.selectedClassId(item.id);
-				onclick= location.href='#classdetails/' + item.id;
+				onclick = location.href = '#classdetails/' + item.id;
 			}
 		};
 

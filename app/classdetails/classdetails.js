@@ -36,7 +36,7 @@ define(function(require) {
 
 		self.activate = function(classname) {
 			return _i.charajax.getJSON('classes/' + classname).done(function(response) {
-				var classDetails = response.Class;
+				var classDetails = response;
 				classDetails.id = classname;
 				var data = classDetails;
 				classDetails.features[0].description = classDetails.features[0].description.replace(/\\n/g, "\n");
