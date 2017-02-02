@@ -10,7 +10,7 @@ define(function(require) {
 
 	return function() {
 		var self = this;
-		self.data = null;
+		//self.data = null;
 		self.displayName = _i.ko.observable('');
 		self.levelDetail = _i.ko.observableArray([]);
 		self.primaryAbility = _i.ko.observable('');
@@ -24,6 +24,7 @@ define(function(require) {
 		self.features = _i.ko.observableArray([]);
 		self.equipment = _i.ko.observableArray([]);
 		self.classDetails = _i.ko.observableArray([]);
+		self.selectedClass = _i.ko.observable('');
 
 		self.deactivate = function() {
 			return _i.app.trigger('view:done', 'Details');
@@ -86,11 +87,36 @@ define(function(require) {
 					self.classDetails(data.levels);
 				});
 
+				//This will also read functions so it needs to look at just a list of what should be split
+				self.propList = _i.ko.computed(function() {
+					var result = [];
+					for (var propName in self.data) {
+						var propertyName = propName;
+						var propertyValue = self.data[propertyName];
+
+						if (self.data.hasOwnProperty(propName) && propName !== 'propList') {
+							result.push({
+								propName: propName,
+								propValue: self.data[propName],
+								templateName: function(data) {
+									if (data.propValue() instanceof Array) {
+										return "list_templ";
+									} else {
+										return "scalar_templ";
+									}
+								}
+							});
+						}
+					}
+					return result
+				});
+
+
 			});
-		}
+		}//END RETURN
 
 
-	};
+	};//END ACTIVATE
 
 	function buildList(listitem) {
 		var result = "";
